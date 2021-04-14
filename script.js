@@ -6,7 +6,11 @@ window.onload = () => {
 
     const canvas = document.querySelector(`#canvas`);
     const ctx = canvas.getContext(`2d`);
-    ctx.drawImage(roadImg, 1000, 600, 1000, 900);
+    // function draw () {
+    //     const ctx = ctx.canvas.with = 600;
+    //     const ctx = ctx.canvas.height = 800;
+    // }
+    ctx.drawImage(roadImg, 0, 0, 600, 800);
 
 function startGame(){   
 
@@ -158,9 +162,10 @@ function startGame(){
 //ANIMATE FUNCTION
     function animate() {
         gameInt = requestAnimationFrame(animate)
-        ctx.clearRect(0, 0, 500, 700)
 
-        ctx.drawImage(roadImg, 0, 0, 500, 700)
+        ctx.clearRect(0, 0, 800, 2240)
+
+        ctx.drawImage(roadImg, 0, 0, 800, 2240)
 
         ctx.font = '30px Arial';
 
