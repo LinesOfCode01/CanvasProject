@@ -1,13 +1,7 @@
 body {
     padding: 0;
-    background-image: url('./assets/overheadBeachBackgroundResize.jpg');
-    background-repeat: no-repeat;
+    overflow: hidden;
 }
-
-/* #roadImg {
-    display: flex;
-    justify-content: flex-start;
-} */
 
 #startButton{
     font-size: 30px;
@@ -17,10 +11,26 @@ body {
     border: 0;
     box-shadow: 0;
     border-radius: 5px;
+    
+}
+
+#exitButton {
+    font-size: 30px;
+    background-color: #8f8f8f;
+    color: black;
+    padding: 20px 40px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;   
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
 }
 
 #canvas {    
-    /* border: orangered dashed; */
-    float: right;
-   /* margin-left: 300px; */
+    border: orangered dashed;
+    background-image: url('./assets/overheadBeachBackgroundResize.jpg');
+    background-repeat: no-repeat;
+    background-size: cover
 }
+
