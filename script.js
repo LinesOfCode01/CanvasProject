@@ -10,10 +10,8 @@ canvas.height = window.innerHeight
 
 let roadImg = new Image();
 roadImg.src = './assets/overheadRoad2.png';
-roadImg.onload = function () {
-    ctx.drawImage(roadImg, canvas.width - 500, 0, 500, canvas.height)
-}
 
+    
 //CAR INFO
 
 let carImg = new Image();
@@ -154,9 +152,9 @@ let score = 0;
 //ANIMATE FUNCTION
 function animate() {
     gameInt = requestAnimationFrame(animate)
-    ctx.clearRect(0, 0, 500, 700)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.drawImage(roadImg, canvas.width - 500, 0, 500, canvas.height)
 
-    // ctx.drawImage(roadImg, 0, 0, 500, 700)
 
     ctx.font = '30px Arial';
 
