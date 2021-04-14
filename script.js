@@ -1,4 +1,3 @@
-
 //Global variables
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
@@ -154,7 +153,6 @@ function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(roadImg, canvas.width - 500, 0, 500, canvas.height)
-
 
     ctx.font = '30px Arial';
 
