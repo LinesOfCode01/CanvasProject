@@ -4,7 +4,7 @@
 let villanImg = new Image()
 villanImg.src ='./assets/sticker-png-motorcycle-cartoon-blog-cartoon-s-of-motorcycles-3d-computer-graphics-bicycle.png'
 villanImg.onload = function(e){
-    ctx.drawImage(villanImg, 0, 0,80,80)
+    
 }
 
 
@@ -14,12 +14,12 @@ villanImg.onload = function(e){
 
 
 // HE DRAW SCORE SHOULD BE  ADDED AFTER AFTER collisionDetection
-const score={
-    points: 0,
-    draw: function () {
-        ctx.font = "20px Arial";
-        ctx.fillStyle = "#0095DD";
-        ctx.fillText("Score: "+this.points, 10, 30);
+// const score={
+//     points: 0,
+//     draw: function () {
+//         ctx.font = "20px Arial";
+//         ctx.fillStyle = "#0095DD";
+//         ctx.fillText("Score: "+this.points, 10, 30);
     }
 }
 //JUST TO TEST IF IT WORKS 
@@ -33,26 +33,28 @@ const score={
 // }
 
 class Villan {
-    constructor(x, y, w, h, img){
+    constructor(x, y, w, h, src){
 
         this.health =200
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.img = img;
+        this.villanImg = new Image;
+        this.speed = 3
     }
-    draw = () =>{
-        if(this.health > 0){
+    loadVillan = () =>{
+        this.villanImg.src= this.src
+        this.loadVillan.onload = this.drawVillan
+   }
+     drawVillan = ()=>{
 
-            ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
-
-        }
+        ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
     }
     //move function 
-    
-
-
+    popoMove = () => {
+        this.y += this.speed
+      }
 
 
 }
@@ -175,6 +177,7 @@ function startGame() {
             eachObstacle.move()
             eachObstacle.draw()
             detectCollision(car, eachObstacle)
+            
         })
     }
 
