@@ -1,21 +1,19 @@
-<<<<<<< HEAD
 window.onload = () => {
     document.getElementById('startButton').onclick = () => {
         startGame();
     }
 };
 
-function startGame(){
-
     const canvas = document.querySelector(`#canvas`);
-
     const ctx = canvas.getContext(`2d`);
-   
+    ctx.drawImage(roadImg, 1000, 600, 1000, 900);
+
+function startGame(){   
 
     let roadImg = new Image();
-    roadImg.src = './assets/overheadRoad.png';
+    roadImg.src = './assets/overheadRoad2.png';
     roadImg.onload = function(){
-        ctx.drawImage(roadImg, 0, 0, 500, 700);
+    
     }
 
     let carImg = new Image();
@@ -124,13 +122,3 @@ function startGame(){
     animate();
 
 };
-=======
-const canvas = document.querySelector("#canvas");
-const ctx = canvas.getContext("2d");
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-let raod = new Image();
-road.src = "resources/background1.png";
-
-drawFireballs();
->>>>>>> 9bc8deb95752ca55d5d18e9c844cb5e5699cef52
