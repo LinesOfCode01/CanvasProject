@@ -71,6 +71,10 @@ window.onload = () => {
     }
 };
 
+document.getElementById('exitButton').onclick = () => {
+    location.href = "start.html"
+}
+
 
 
 //CAR CONTROLS
