@@ -1,7 +1,11 @@
 // const canvas = document.querySelector('canvas');
 // let ctx = canvas.getContext('2d');
 
-
+let villanImg = new Image()
+villanImg.src ='./assets/sticker-png-motorcycle-cartoon-blog-cartoon-s-of-motorcycles-3d-computer-graphics-bicycle.png'
+villanImg.onload = function(e){
+    ctx.drawImage(villanImg, 0, 0,80,80)
+}
 
 
 
@@ -10,7 +14,7 @@
 
 
 // HE DRAW SCORE SHOULD BE  ADDED AFTER AFTER collisionDetection
-const score = {
+const score={
     points: 0,
     draw: function () {
         ctx.font = "20px Arial";
@@ -65,9 +69,9 @@ function startGame() {
     const ctx = canvas.getContext(`2d`);
 
 
-    let roadImg = new Image();
+    let roadImg = new Image(e);
     roadImg.src = './assets/overheadRoad.png';
-    roadImg.onload = function () {
+    roadImg.onload = function (e) {
         ctx.drawImage(roadImg, 0, 0, 500, 700);
     }
 
