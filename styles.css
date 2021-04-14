@@ -5,11 +5,6 @@ body {
     overflow: hidden;
 }
 
-/* #roadImg {
-    display: flex;
-    justify-content: flex-start;
-} */
-
 #startButton{
     font-size: 30px;
     background-color: #8f8f8f;
@@ -20,18 +15,7 @@ body {
     border-radius: 5px;
 }
 
-/* #canvas {     */
-    /* border: orangered dashed; */
-    /* float: right; */
-   /* margin-left: 300px; */
-/* } */
-
-/* 
-body {
-    padding: 0;
-    margin-top: 3vh;
-    margin-left: auto;
-    margin-right: auto;
-    display:block;
+#canvas {    
+    border: orangered dashed;
 }
- */
+
