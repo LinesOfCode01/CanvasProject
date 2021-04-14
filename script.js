@@ -11,7 +11,7 @@ canvas.height = window.innerHeight
 let roadImg = new Image();
 roadImg.src = './assets/overheadRoad2.png';
 
-    
+
 //CAR INFO
 
 let carImg = new Image();
@@ -41,9 +41,9 @@ let car = {
 // }
 
 class Villan {
-    constructor(x, y, w, h, src){
+    constructor(x, y, w, h, src) {
 
-        this.health =200
+        this.health = 200
         this.x = x;
         this.y = y;
         this.w = w;
@@ -51,18 +51,18 @@ class Villan {
         this.villanImg = new Image;
         this.speed = 3
     }
-    loadVillan = () =>{
-        this.villanImg.src= this.src
+    loadVillan = () => {
+        this.villanImg.src = this.src
         this.loadVillan.onload = this.drawVillan
-   }
-     drawVillan = ()=>{
+    }
+    drawVillan = () => {
 
         ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
     }
     //move function 
     popoMove = () => {
         this.y += this.speed
-      }
+    }
 
 
 }
@@ -79,13 +79,13 @@ window.onkeydown = function (e) {
     console.log(e.key)
 
     if (e.key === 'ArrowLeft') {
-        if (car.x > 0) {
+        if (car.x > canvas.width - (canvas.width / 3)) {
             car.x -= 15
         }
     }
 
     if (e.key === 'ArrowRight') {
-        if (car.x < 440) {
+        if (car.x < canvas.width - car.w) {
             car.x += 15
         }
     }
@@ -97,7 +97,7 @@ window.onkeydown = function (e) {
     }
 
     if (e.key === 'ArrowDown') {
-        if (car.y < 440) {
+        if (car.y < canvas.height - car.h) {
             car.y += 15
         }
     }
@@ -116,33 +116,33 @@ function detectCollision(rect1, rect2) {
 
 //OBSTACLE CODE
 
-// class Obstacle {
-//     constructor(x, y, w, h) {
-//         this.x = x;
-//         this.y = y;
-//         this.w = w;
-//         this.h = h;
+class Obstacle {
+    constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
 
-//         this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${Math.random() * 255}`
-//     }
+        this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${Math.random() * 255}`
+    }
 
-//     draw = () => {
-//         ctx.fillStyle = this.color
-//         ctx.fillRect(this.x, this.y, this.w, this.h)
-//     }
+    draw = () => {
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.x, this.y, this.w, this.h)
+    }
 
-//     move = () => {
-//         this.y += 5;
-//     }
-// }
+    move = () => {
+        this.y += 1;
+    }
+}
 
-// let obstacles = [] //Part of setInterval function below:
+let obstacles = [] //Part of setInterval function below:
 
-// setInterval (function () {
-//     obstacles.push(new Obstacle(Math.random() * 450, 0, Math.random() * 200 + 50, 30))
+setInterval(function () {
+    obstacles.push(new Obstacle(Math.random() * canvas.width, 0, Math.random() * 200 + 50, 30))
 
-//     score += 1
-// }, 1000)
+    score += 1
+}, 1000)
 
 let gameInt = null;
 
@@ -169,5 +169,5 @@ function animate() {
     })
 }
 
-animate(); 
+animate();
 
