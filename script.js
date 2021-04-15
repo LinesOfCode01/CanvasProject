@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> cf7f99a2315c29e38a12a092ef916ef2ca95363b
 //Global variables
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
@@ -12,7 +8,7 @@ canvas.height = window.innerHeight
 //ROAD INFOroa
 
 let roadImg = new Image();
-roadImg.src = './assets/overheadRoad2.png';
+roadImg.src = './assets/overheadBeachBackgroundResize1.jpg';
 
 
 //CAR INFO
@@ -134,9 +130,9 @@ class Obstacle {
         ctx.fillRect(this.x, this.y, this.w, this.h)
     }
 
-    move = () => {
-        this.y += 1;
-    }
+    // move = () => {
+    //     this.y += 1;
+    // }
 }
 
 let obstacles = [] //Part of setInterval function below:
@@ -153,14 +149,10 @@ let score = 0;
 
 
 //ANIMATE FUNCTION
-<<<<<<< HEAD
- function animate() {
-=======
 function animate() {
->>>>>>> cf7f99a2315c29e38a12a092ef916ef2ca95363b
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(roadImg, canvas.width - 500, 0, 500, canvas.height)
+    ctx.drawImage(roadImg, canvas.width - 1400, 0, 1400, canvas.height)
 
     ctx.font = '30px Arial';
 
