@@ -76,7 +76,7 @@ class Villan {
 
 }
 let mafia = new Villan(
-  canvas.width-100, 0, 100, 100,  "./assets/FerrariEnzoTrans.png" 
+  canvas.width-160, 20g, 100, 60,  "./assets/FerrariEnzoTrans.png" 
 )
 
 mafia.loadVillan();
