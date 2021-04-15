@@ -5,6 +5,11 @@ body {
     margin: 0;
 }
 
+/* .hidden {
+    opacity: 0;
+    pointer-events: none;
+} */
+
 
 #exitButton {
     font-size: 30px;
@@ -25,4 +30,3 @@ body {
     background-repeat: no-repeat;
     background-size: cover
 }
-

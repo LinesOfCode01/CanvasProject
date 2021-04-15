@@ -24,10 +24,20 @@
     </div>
     
     <div class="bg"></div>
-    <script>
-      document.querySelector("button").onclick = function () {
-        window.location.href = "index.html";
-      };
-    </script>
+
+       <!-- DROP DOWN MENU -->
+    <div class= "dropdown">
+        <button onclick='myOptions()' 
+        class= 'dropbtn'>Chose your Car!</button>
+        <div id='optionDropdown' class='optionContent'>
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+        </div>
+    </div>
+
+    
+
+    <script src='script.js'></script>
   </body>
 </html>
