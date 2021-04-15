@@ -4,15 +4,29 @@ const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 // ctx.drawImage(roadImg, 1000, 600, 1000, 900);
+const urlParams = new URLSearchParams(window.location.search);
+const carPicked = urlParams.get('car');
+console.log(carPicked)
+
+
+
 
 //ROAD INFO
 
 let roadImg = new Image();
 roadImg.src = './assets/overheadBeachBackgroundResize1.jpg';
 
+const cars = {
+    whiteCar: './assets/whitecar.png',
+    blackCar: './assets/blackcar.jpg',
+    blueCar: './assets/bluecar.png',
+    policeCar: './assets/PoliceTrans.png'
+}
+
 
 //CAR INFO
 
+<<<<<<< HEAD
 class Car {
     constructor (x, y, w, h, src) {
         this.x = x;
@@ -30,6 +44,46 @@ class Car {
 
         this.carImg.src = this.src
         this.carImg.onload = this.drawCar
+=======
+// let carImg = new Image();
+// carImg.src = cars[carPicked];
+
+// let car = {
+//     x: 900,
+//     y: canvas.height - 100,
+//     h: 100,
+//     w: 60,
+
+//     draw: function () {
+//         ctx.drawImage(carImg, this.x, this.y, this.w, this.h)
+//     }
+// }
+
+
+
+
+class Car {
+    constructor(x, y, w, h, src) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.src = src;
+        this.carImg = new Image();
+        this.speed = -2;
+
+    }
+
+    loadCar = () => {
+
+        this.carImg.src = this.src
+        this.carImg.onload = this.drawCar
+    }
+
+    drawCar = () => {
+
+        ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
+>>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
     }
 
     drawCar = () => {
@@ -121,6 +175,12 @@ function myOptions() {
 // }
 
 
+let ferrari = new Car(canvas.width - 50, canvas.height - 100, 50, 100, cars[carPicked])
+ferrari.loadCar();
+// let police = new Car(canvas.width / 2 + 10, 100, 50, 100, './assets/PoliceTrans.png')
+// police.loadCar();
+
+
 
 // // HE DRAW SCORE SHOULD BE  ADDED AFTER AFTER collisionDetection
 //     const score={
@@ -132,6 +192,7 @@ function myOptions() {
 
 // }
 
+<<<<<<< HEAD
 //VILLAN
 
 // class Villan {
@@ -167,6 +228,53 @@ function myOptions() {
 //         startGame();
 //     }
 // };
+=======
+//VILLAN INFO
+// let villanImg = new Image();
+// villanImg.src ='./assets/FerrariEnzoTrans.png'
+
+class Villan {
+    constructor(x, y, w, h, src) {
+
+        this.health = this.health;
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.src = src;
+        this.villanImg = new Image()
+        this.speed = 3
+    }
+    loadVillan = () => {
+
+        this.villanImg.src = this.src
+        this.villanImg.onload = this.draw
+    }
+    draw = () => {
+
+
+        ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
+    }
+    //move function 
+    popMove = () => {
+        this.y += this.speed
+    }
+
+
+}
+let mafia = new Villan(
+    canvas.width - 160, 20, 100, 60, "./assets/FerrariEnzoTrans.png"
+)
+
+mafia.loadVillan();
+
+
+
+
+
+
+
+>>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
 
 document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
@@ -280,12 +388,17 @@ let score = 0;
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+<<<<<<< HEAD
     ctx.drawImage(roadImg, canvas.width - 1400, 0, 1400, canvas.height)
+=======
+    ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height)
+>>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
 
     ctx.font = '30px Arial';
 
     ctx.fillText(score, 10, 30, 50, 00)
 
+<<<<<<< HEAD
     // car.draw();
     if (ferrari.loadCar()) { ferrari.drawCar();
     }
@@ -296,7 +409,25 @@ function animate() {
     //     eachObstacle.draw()
     //     detectCollision(car, eachObstacle)
     // })
+=======
+
+    ferrari.drawCar()
+
+
+    obstacles.forEach(eachObstacle => {
+        eachObstacle.move()
+        eachObstacle.draw()
+        detectCollision(ferrari, eachObstacle)
+    })
+>>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
 }
 
+
+
+
+
 animate();
+
+
+
 

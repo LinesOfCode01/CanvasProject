@@ -26,7 +26,10 @@ body {
 
 #canvas {    
     border: orangered dashed;
+<<<<<<< HEAD
     /* background-image: url('./assets/overheadBeachBackgroundResize.jpg'); */
+=======
+>>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
     background-repeat: no-repeat;
     background-size: cover
 }
