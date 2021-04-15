@@ -20,25 +20,25 @@ const cars = {
     whiteCar: './assets/whitecar.png',
     blackCar: './assets/blackcar.jpg',
     blueCar: './assets/bluecar.png',
-
+    policeCar: './assets/PoliceTrans.png'
 }
 
 
 //CAR INFO
 
-let carImg = new Image();
-carImg.src = cars[carPicked];
+// let carImg = new Image();
+// carImg.src = cars[carPicked];
 
-let car = {
-    x: 900,
-    y: canvas.height - 100,
-    h: 100,
-    w: 60,
+// let car = {
+//     x: 900,
+//     y: canvas.height - 100,
+//     h: 100,
+//     w: 60,
 
-    draw: function () {
-        ctx.drawImage(carImg, this.x, this.y, this.w, this.h)
-    }
-}
+//     draw: function () {
+//         ctx.drawImage(carImg, this.x, this.y, this.w, this.h)
+//     }
+// }
 
 
 
@@ -51,8 +51,7 @@ class Car {
         this.h = h;
         this.src = src;
         this.carImg = new Image();
-        this.speed = -2
-        this.carKeys = [];
+        this.speed = -2;
 
     }
 
@@ -69,10 +68,10 @@ class Car {
 }
 
 
-let ferrari = new Car(canvas.width / 2 + 10, canvas.height / 2 - 50, 50, 100, cars[carPicked])
+let ferrari = new Car(canvas.width - 50, canvas.height - 100, 50, 100, cars[carPicked])
 ferrari.loadCar();
-let police = new Car(canvas.width / 2 + 10, 100, 50, 100, './assets/PoliceTrans.png')
-police.loadCar();
+// let police = new Car(canvas.width / 2 + 10, 100, 50, 100, './assets/PoliceTrans.png')
+// police.loadCar();
 
 
 
@@ -143,29 +142,25 @@ window.onkeydown = function (e) {
     console.log(e.key)
 
     if (e.key === 'ArrowLeft') {
-        if (car.x > canvas.width - (canvas.width / 3)) {
-            car.x -= 15
+        if (ferrari.x > canvas.width - (canvas.width / 3)) {
             ferrari.x -= 15
         }
     }
 
     if (e.key === 'ArrowRight') {
-        if (car.x < canvas.width - car.w) {
-            car.x += 15
+        if (ferrari.x < canvas.width - ferrari.w) {
             ferrari.x += 15
         }
     }
 
     if (e.key === 'ArrowUp') {
-        if (car.y > 0) {
-            car.y -= 15
+        if (ferrari.y > 0) {
             ferrari.y -= 15
         }
     }
 
     if (e.key === 'ArrowDown') {
-        if (car.y < canvas.height - car.h) {
-            car.y += 15
+        if (ferrari.y < canvas.height - ferrari.h) {
             ferrari.y += 15
         }
     }
@@ -221,21 +216,20 @@ let score = 0;
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(roadImg, canvas.width - 500, 0, 500, canvas.height)
+    ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height)
 
     ctx.font = '30px Arial';
 
     ctx.fillText(score, 10, 30, 50, 00)
 
-    car.draw();
-    ferrari.drawCar();
-    police.drawCar();
-    mafia.draw();
+
+    ferrari.drawCar()
+
 
     obstacles.forEach(eachObstacle => {
         eachObstacle.move()
         eachObstacle.draw()
-        detectCollision(car, eachObstacle)
+        detectCollision(ferrari, eachObstacle)
     })
 }
 

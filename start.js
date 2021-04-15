@@ -4,11 +4,8 @@ document.querySelector(".startBtn").onclick = function () {
 
 // Characters
 
-function characterSelect() {
-    document.getElementById("character-box").style.backgroundImage = "url(./assets/PoliceTrans.png)";
-    // var audio = document.getElementById("mario-audio");
-    // audio.play();
-}
+
+
 let carPicked = ""
 function whiteCar() {
     carPicked = 'whiteCar'
@@ -23,4 +20,9 @@ function blueCar() {
 function blackCar() {
     carPicked = `blackCar`
     document.getElementById("character-box").style.backgroundImage = "url(./assets/blackcar.jpg)";
+}
+
+function policeCar() {
+    carPicked = `policeCar`
+    document.getElementById("character-box").style.backgroundImage = "url(./assets/PoliceTrans.png)";
 }

@@ -21,7 +21,6 @@ body {
 
 #canvas {    
     border: orangered dashed;
-    background-image: url('http://vignette2.wikia.nocookie.net/simpsons/images/7/75/Mario.png/revision/latest?cb=20100202173945');
     background-repeat: no-repeat;
     background-size: cover
 }
