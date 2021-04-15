@@ -22,6 +22,8 @@ const cars = {
     blueCar: './assets/bluecar.png',
 
 }
+
+
 //CAR INFO
 
 let carImg = new Image();
@@ -64,8 +66,8 @@ class Car {
 
         ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
     }
-
 }
+
 
 let ferrari = new Car(canvas.width / 2 + 10, canvas.height / 2 - 50, 50, 100, cars[carPicked])
 ferrari.loadCar();
@@ -84,32 +86,50 @@ police.loadCar();
 
 // }
 
+//VILLAN INFO
+// let villanImg = new Image();
+// villanImg.src ='./assets/FerrariEnzoTrans.png'
+
 class Villan {
     constructor(x, y, w, h, src) {
 
-        this.health = 200
+        this.health = this.health;
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.villanImg = new Image;
+        this.src = src;
+        this.villanImg = new Image()
         this.speed = 3
     }
     loadVillan = () => {
+
         this.villanImg.src = this.src
-        this.loadVillan.onload = this.drawVillan
+        this.villanImg.onload = this.draw
     }
-    drawVillan = () => {
+    draw = () => {
+
 
         ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
     }
     //move function 
-    popoMove = () => {
+    popMove = () => {
         this.y += this.speed
     }
 
 
 }
+let mafia = new Villan(
+    canvas.width - 160, 20, 100, 60, "./assets/FerrariEnzoTrans.png"
+)
+
+mafia.loadVillan();
+
+
+
+
+
+
 
 
 document.getElementById('exitButton').onclick = () => {
@@ -210,6 +230,8 @@ function animate() {
     car.draw();
     ferrari.drawCar();
     police.drawCar();
+    mafia.draw();
+
     obstacles.forEach(eachObstacle => {
         eachObstacle.move()
         eachObstacle.draw()
