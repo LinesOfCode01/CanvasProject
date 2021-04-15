@@ -11,6 +11,9 @@ let roadImg = new Image();
 roadImg.src = './assets/overheadRoad2.png';
 
 
+
+
+
 //CAR INFO
 
 let carImg = new Image();
@@ -39,37 +42,51 @@ let car = {
 
 // }
 
+//VILLAN INFO
+// let villanImg = new Image();
+// villanImg.src ='./assets/FerrariEnzoTrans.png'
+
 class Villan {
     constructor(x, y, w, h, src) {
 
-        this.health = 200
-        this.x = x;
+        this.health = this.health;
+        this.x =x;
         this.y = y;
-        this.w = w;
+        this.w =w;
         this.h = h;
-        this.villanImg = new Image;
+        this.src = src;
+        this.villanImg = new Image()
         this.speed = 3
     }
     loadVillan = () => {
-        this.villanImg.src = this.src
-        this.loadVillan.onload = this.drawVillan
-    }
-    drawVillan = () => {
 
+        this.villanImg.src = this.src
+        this.villanImg.onload = this.draw
+    }
+    draw= () => {
+
+        
         ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
     }
     //move function 
-    popoMove = () => {
+    popMove = () => {
         this.y += this.speed
     }
 
 
 }
-window.onload = () => {
-    document.getElementById('startButton').onclick = () => {
-        startGame();
-    }
-};
+let mafia = new Villan(
+  canvas.width-100, 0, 100, 100,  "./assets/FerrariEnzoTrans.png" 
+)
+
+mafia.loadVillan();
+
+
+
+
+
+
+
 
 
 
@@ -159,6 +176,7 @@ function animate() {
     ctx.fillText(score, 10, 30, 50, 00)
 
     car.draw();
+    mafia.draw();
 
     obstacles.forEach(eachObstacle => {
         eachObstacle.move()
