@@ -229,19 +229,37 @@ class Obstacle {
     }
 }
 
-//OBSTACLE SET INTERVAL FUNCTION:
-// setInterval(function () {
-//   obstacles.push(
-//     new Obstacle(
-//       Math.floor(startX + (Math.random() * canvas.width) / 3),
-//       0,
-//       Math.random() * 200 + 50,
-//       30
-//     )
-//   );
+class Boat {
+    constructor(x, y, w, h, src) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.src = src;
+        this.obstacleImg = new Image()
+    }
+    loadboat = () => {
+        this.obstacleImg.src = this.src
+        this.obstacleImg.onload = this.drawObstacle
 
-//   score += 1;
-// }, 6000);
+    }
+    drawboat = () => {
+        ctx.drawImage(this.obstacleImg, this.x, this.y, this.w, this.h)
+        this.y--
+    }
+    move = () => {
+        this.y += 1;
+    }
+}
+let boats = []
+// OBSTACLE SET INTERVAL FUNCTION:
+setInterval(function () {
+    let boat = new Boat(Math.random() * canvas.width / 3, canvas.height, 100, 100, "./assets/Boat.png")
+    boat.loadboat()
+
+    boats.push(boat)
+
+}, 5000);
 
 //Potholes
 setInterval(() => {
@@ -299,6 +317,9 @@ function animate() {
     mafia.villanMove();
     mafia.draw();
 
+    boats.forEach((boat) => {
+        boat.drawboat();
+    })
     mafiaCollision(carKeys, mafia);
 
     //   boat.move();
