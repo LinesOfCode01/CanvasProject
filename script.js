@@ -4,6 +4,10 @@ const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
+let canvasY2 = 0;
+let canvasY = -canvas.height;
+
+
  let audio = new Audio( "./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
  audio.play();
 
@@ -17,6 +21,9 @@ document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
 }
 
+//Boat info 
+let boatImg = new Image;
+boatImg.src= './assets/FrdWhiteCar.png'
 
 //ROAD INFO
 let roadImg = new Image();
@@ -210,6 +217,8 @@ class Obstacle {
 
         this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${Math.random() * 255}`
     }
+     
+
 
     draw = () => {
         ctx.fillStyle = this.color
@@ -241,7 +250,12 @@ let score = 0;
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height)
+    ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height +5)
+    ctx.drawImage(roadImg,0, ++canvasY2, canvas.width, canvas.height +5);
+    if( canvasY >= canvas.height) canvasY = -canvas.height;
+    if(canvasY2 >= canvas.height) canvasY2 = -canvas.height;
+    
+
 
     ctx.font = '50px Times Bold';
 
