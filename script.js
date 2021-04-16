@@ -98,9 +98,9 @@ class Villan {
 
   dead = () => {
     this.villanImg.src = "./assets/JgWhiteCar.png";
-    ctx.drawImage(myGif.img, 0, 0);
-    myGif.load("./assets/fireBall.gif");
-    myGif.load("./assets/Fire.gif");
+    // ctx.drawImage(myGif.img, 0, 0);
+    // myGif.load("./assets/fireBall.gif");
+    // myGif.load("./assets/Fire.gif");
     cancelAnimationFrame(gameInt);
   };
 
@@ -171,7 +171,7 @@ function detectCollision(rect1, rect2) {
   ) {
     console.log("COLLISION");
     cancelAnimationFrame(gameInt);
-    alert("Game Over");
+    alert("Crash and BURN!! Game Over");
   }
 }
 

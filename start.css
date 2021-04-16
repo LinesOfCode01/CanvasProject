@@ -63,13 +63,14 @@ html {
     z-index: 3;
     font-family: "gamefont", Arial, sans-serif;
     color: yellow;
-    margin-left: 10vh 
+    margin-left: 28vh 
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-items: center;
 }
 
 /* characters by Joey */
