@@ -203,8 +203,19 @@ class Obstacle {
         this.y = y;
         this.w = w;
         this.h = h;
+        this.src = src;
+        this.obstacleImg = new Image()
 
         this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${Math.random() * 255}`
+    }
+    loadObstacle = () => {
+        this.obstacleImg.src = this.src
+        this.obstacleImg.onload = this.drawObstacle
+
+    }
+    drawObstacle = () => {
+        ctx.drawImage(this.obstacleImg, this.x, this.y, this.w, this.h)
+        this.y++
     }
 
     draw = () => {
@@ -223,6 +234,13 @@ setInterval(function () {
 
     score += 1
 }, 6000)
+
+//Potholes
+setInterval(() => {
+    let potholes = new Obstacle(Math.random() * canvas.width - 100, -100, 100, 100, "")
+    potHoles.loadObstacle()
+    obstacles.push(potHoles)
+}, 3000)
 
 let obstacles = []
 
