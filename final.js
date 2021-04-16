@@ -3,11 +3,6 @@ const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
-
- let audio = new Audio( "./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
- audio.play();
-
-// ctx.drawImage(roadImg, 1000, 600, 1000, 900);
 const urlParams = new URLSearchParams(window.location.search);
 const carPicked = urlParams.get('car');
 console.log(carPicked)
@@ -25,13 +20,13 @@ roadImg.src = './assets/overheadBeachBackgroundResize.jpg';
 
 //CAR SELECTOR OBJECT
 const cars = {
-
+    
     policeCar: './assets/Police.png',
     frdWhiteCar: './assets/FrdWhiteCar.png',
     furRedCar: './assets/FurRedCar.png',
     jgWhiteCar: './assets/JgWhiteCar.png',
     lamSilverCar: './assets/LamSilverCar.png',
-    poorSilverCar: './assets/PoorSilverCar.png'
+    poorSilverCar:  './assets/PoorSilverCar.png'
 
 }
 
@@ -57,17 +52,17 @@ class Car {
     drawCar = () => {
 
         ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
-    }
-}
+    }    
+ }
+  
+ let carKeys = new Car(canvas.width - 50, canvas.height - 100, 50, 100, cars[carPicked])
 
-let carKeys = new Car(canvas.width - 50, canvas.height - 100, 50, 100, cars[carPicked])
-
-carKeys.loadCar();
+ carKeys.loadCar();
 
 
 //VILLAN INFO
 class Villan {
-    constructor(health, x, y, w, h, src, bh) {
+    constructor(x, y, w, h, src, health) {
 
         this.health = health;
         this.x = x;
@@ -77,69 +72,38 @@ class Villan {
         this.src = src;
         this.villanImg = new Image()
         this.speed = 3
-        this.bh = bh;
     }
-
-    draw = () => {
-        if (this.y < this.bh) this.y += 3;
-        //ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-        ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
-        ctx.fillStyle = 'red'
-        ctx.fillRect(this.x, this.y - 50, 200, 25)
-        ctx.fillStyle = 'green'
-        ctx.fillRect(this.x, this.y - 50, Math.max(0, this.health / 100 * 200), 25)
-        if (this.health <= 0) {
-            this.dead()
-        }
-    };
-
     loadVillan = () => {
 
         this.villanImg.src = this.src
         this.villanImg.onload = this.draw
     }
+    draw = () => {
 
-    dead = () => {
-        this.src = deadVillan
-        cancelAnimationFrame(gameInt)
-        restartGame()
+
+        ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
     }
 
-
-    // let deadVillan = new Image();
-    // deadVillan.src = './assets/JgWhiteCar.png'
-
-    // 
-    //}
-
-    //VILLAN MOVE FUNCTION
+//VILLAN MOVE FUNCTION
     villanMove = () => {
         this.y -= this.speed
-        if (this.y <= 0) {
+        if(this.y <= 0) {
             this.speed = 0
-            if (this.x <= canvas.width - this.w) {
-                this.x++
-            } else if (this.x <= canvas.width / 2) {
-                this.x--
-            }
+            if(this.x <= canvas.width - this.w){
+                this.x ++
+            } else if(this.x <= canvas.width/2) {
+                this.x --
+        }
         }
 
     }
 
 }
-
-let startX = canvas.width - (canvas.width / 4)
-
-
-let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 3), canvas.height -= 5, 80, 120, "./assets/PoorSilverCar.png", 100)
+ let startX = canvas.width - (canvas.width / 4)
 
 
+let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 3), canvas.height -= 5, 80, 120, "./assets/PoorSilverCar.png", 100)    
 
-
-
-document.getElementById('exitButton').onclick = () => {
-    location.href = "start.html"
-}
 mafia.loadVillan()
 
 
@@ -176,10 +140,7 @@ window.onkeydown = function (e) {
 
 //COLLISION DETECTION
 function detectCollision(rect1, rect2) {
-    if (rect1.x < rect2.x + rect2.w &&
-        rect1.x + rect1.w > rect2.x &&
-        rect1.y < rect2.y + rect2.h &&
-        rect1.y + rect1.h > rect2.y) {
+    if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.y + rect1.h > rect2.y) {
 
         console.log("COLLISION")
         cancelAnimationFrame(gameInt)
@@ -192,10 +153,8 @@ function mafiaCollision(rect1, rect2) {
 
         console.log("COLLISION")
         score += 100
-        rect2.health--
-        // Villan.bh -= 5
-        //rect2.health = Math.min(100, rect1.health + .5)
-        //rect2.bh -= 5
+        rect2.health --
+        rect2.h--
 
     }
 }
@@ -234,7 +193,6 @@ let gameInt = null;
 
 let score = 0;
 
-// let stopGame = null
 
 //ANIMATE FUNCTION
 
@@ -243,11 +201,11 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height)
 
-    ctx.font = '50px Times Bold';
+    ctx.font = '30px Arial';
 
-    ctx.fillText(score, 30, 70, 50, 0)
+    ctx.fillText(score, 10, 30, 50, 00)
 
-    carKeys.drawCar()
+    carKeys.drawCar()    
 
     obstacles.forEach(eachObstacle => {
         eachObstacle.move()
@@ -255,11 +213,10 @@ function animate() {
         detectCollision(carKeys, eachObstacle)
     })
 
-    mafia.villanMove()
-    mafia.draw()
-
-    mafiaCollision(carKeys, mafia)
-
+        mafia.villanMove()
+        mafia.draw()
+        mafiaCollision(carKeys, mafia)
+ 
 }
 
 

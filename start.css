@@ -14,13 +14,12 @@ html {
 .bg {
     position: absolute;
     background-image: url(assets/cclkomdccv.jpeg);
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
-    
+    overflow: hidden;    
 }
 
 .title {
@@ -32,7 +31,6 @@ html {
     align-items: center;
     z-index: 5;
     margin-bottom: 5vh;
-
 }
 
 #highscores ul {
@@ -45,8 +43,7 @@ html {
     align-items: center;
     z-index: 2;
     list-style-type: none;
-    font-weight: bolder;
-     
+    font-weight: bolder;     
 }
 
 
@@ -66,14 +63,16 @@ html {
     z-index: 3;
     font-family: "gamefont", Arial, sans-serif;
     color: yellow;
-    margin-left: 10vh 
+    margin-left: 28vh 
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-items: center;
 }
+
 /* characters by Joey */
 
 h2 {
@@ -97,7 +96,7 @@ h2 {
   float: left;
   border-radius: 5px;
   border: 1px solid black;
-  background-color: rgb(0, 49, 128);
+  background-color: transparent;
   /* background-image: ; */
   background-size: contain;
   background-repeat: no-repeat;
@@ -109,7 +108,7 @@ h2 {
 #character-container img {
   height: 150px;
   width: 100px;
-  border: 3px groove #800080;
+  border: 3px groove black;
   padding: 10px;
   margin: 2.5px;
 }

@@ -18,17 +18,13 @@ function myOptions() {
 
       document.querySelector(".startBtn").onclick = function () {
         if (document.getElementsByClassName('optionDropdown a').innerHTML === 'Option 1') {
-        let ferrari = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FerrariEnzoTrans.png')
-
-        // ferrari.loadCar()
+        let carKeys = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FurRedCar.png')
       
       }
-      window.location.href = "index.html";
-        
-      };
-     
+      window.location.href = "index.html";        
+      };     
   }
 
 
-console.log(ferrari);
+console.log(carKeys);
       
