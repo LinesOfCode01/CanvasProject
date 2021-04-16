@@ -3,6 +3,10 @@ const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
+
+ let audio = new Audio( "./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
+ audio.play();
+
 // ctx.drawImage(roadImg, 1000, 600, 1000, 900);
 
 //ROAD INFOroa
@@ -76,7 +80,7 @@ class Villan {
 
 }
 let mafia = new Villan(
-  canvas.width-160, 20g, 100, 60,  "./assets/FerrariEnzoTrans.png" 
+  canvas.width-160, 20, 100, 60,  "./assets/FerrariEnzoTrans.png" 
 )
 
 mafia.loadVillan();
