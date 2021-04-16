@@ -81,6 +81,8 @@ class Villan {
         this.villanImg = new Image()
         this.speed = 3
         this.bh = bh;
+        this.direction = 1
+        this.lateral = 1
     }
 
     draw = () => {
@@ -103,24 +105,37 @@ class Villan {
     }
 
     dead = () => {
-        this.src = deadVillan
+        this.villanImg.src = "./assets/PoorSilverCarDamaged.png"
         cancelAnimationFrame(gameInt)
-        restartGame()
+        // restartGame()
     }
 
     //VILLAN MOVE FUNCTION
     villanMove = () => {
-        this.y -= this.speed
+        this.y -= this.speed * this.direction
+        this.x -= this.speed * this.lateral * .2
         if (this.y <= 0) {
-            this.speed = 0
-            this.x++
-            if (this.x >= canvas.width - this.w) {
-                this.x -= 500
-            }
-            else if (this.x <= canvas.width - (canvas.width / 3)) {
-                this.x += 100
-            }
+            this.direction = -1
         }
+        if (this.y > canvas.height) {
+            this.direction = 1
+        }
+        if (this.x > canvas.width) {
+            this.lateral = 1
+        }
+        if (this.x < canvas.width * 2 / 3) {
+            this.lateral = -1
+        }
+        // if (this.y <= 0) {
+        //     this.speed = 0
+        //     this.x++
+        //     if (this.x >= canvas.width - this.w) {
+        //         this.x -= 500
+        //     }
+        //     else if (this.x <= canvas.width - (canvas.width / 3)) {
+        //         this.x += 100
+        //     }
+        // }
 
     }
 };
@@ -189,7 +204,6 @@ function mafiaCollision(rect1, rect2) {
 
 //OBSTACLE CODE
 class Obstacle {
-<<<<<<< HEAD
 
     constructor(x, y, w, h, src) {
         this.x = x;
@@ -231,74 +245,19 @@ class Obstacle {
 
 //Potholes
 setInterval(() => {
-    let potHoles = new Obstacle(Math.random() * canvas.width - 100, -100, 100, 100, "./assets/pothole-png-7.png")
+    let potHoles = new Obstacle(Math.random() * canvas.width + 790, -100, 100, 100, "./assets/pothole-png-7.png")
     potHoles.loadObstacle()
     obstacles.push(potHoles)
     score += 1;
 }, 3000)
 
 
-=======
-  constructor(x, y, w, h) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-
-    this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${
-      Math.random() * 255
-    }`;
-  }
-
-  draw = () => {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
-  };
-
-  move = () => {
-    this.y += 1;
-  };
-}
-//   loadBoat = () => {
-//     this.boatImg.src = this.src;
-//     this.boatImg.onload = this.draw;
-//   };
-
-//OBSTACLE SET INTERVAL FUNCTION:
-setInterval(function () {
-  obstacles.push(
-    new Obstacle(
-      Math.floor(startX + (Math.random() * canvas.width) / 3),
-      0,
-      Math.random() * 200 + 50,
-      30
-    )
-  );
-
-  score += 1;
-}, 6000);
-
-//Potholes
-setInterval(() => {
-  let potHoles = new Obstacle(
-    Math.random() * canvas.width - 100,
-    -100,
-    100,
-    100,
-    "./assets/potHole1.png"
-  );
-  potHoles.loadObstacle();
-  obstacles.push(potHoles);
-  score += 1;
-}, 3000);
->>>>>>> 17a375b5c0a50cec1bdb8ebeba1751bba69f8508
 
 // let stopGame = null
 
 //ANIMATE FUNCTION
 
 function animate() {
-<<<<<<< HEAD
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5)
@@ -324,14 +283,6 @@ function animate() {
     mafia.draw()
 
     mafiaCollision(carKeys, mafia)
-=======
-  gameInt = requestAnimationFrame(animate);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5);
-  ctx.drawImage(roadImg, 0, ++canvasY2, canvas.width, canvas.height + 5);
-  if (canvasY >= canvas.height) canvasY = -canvas.height;
-  if (canvasY2 >= canvas.height) canvasY2 = -canvas.height;
->>>>>>> 17a375b5c0a50cec1bdb8ebeba1751bba69f8508
 
     ctx.font = "50px Times Bold";
 
