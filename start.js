@@ -37,7 +37,7 @@ function jgWhiteCar() {
 
 function lamSilverCar() {
     carPicked = `lamSilverCar`
-    document.getElementById("character-box").style.backgroundImage = "url(/assets/LamSilverCar.png)";
+    document.getElementById("character-box").style.backgroundImage = "url(./assets/LamSilverCar.png)";
     var audio = document.getElementById("lam-audio");
     audio.play();
 }

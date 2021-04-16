@@ -3,9 +3,19 @@ const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+//  let audio = new Audio( "./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
+//  audio.play();
+
+// ctx.drawImage(roadImg, 1000, 600, 1000, 900);
 const urlParams = new URLSearchParams(window.location.search);
 const carPicked = urlParams.get("car");
 console.log(carPicked);
+let canvasY2 = 0;
+let canvasY = -canvas.height;
+let obstacles = [];
+let gameInt = null;
+let score = 0;
 
 document.getElementById("exitButton").onclick = () => {
   location.href = "start.html";
@@ -50,11 +60,10 @@ class Car {
 let carKeys = new Car(
   canvas.width - 50,
   canvas.height - 100,
-  80,
-  120,
+  50,
+  100,
   cars[carPicked]
 );
-
 carKeys.loadCar();
 
 // let myGif = gif();
@@ -125,7 +134,7 @@ let mafia = new Villan(
   (canvas.height -= 5),
   80,
   120,
-  "./assets/PoorSilverCarVillan.png",
+  "./assets/PoorSilverCar.png",
   100,
   0
 );
@@ -183,7 +192,7 @@ function detectCollision(rect1, rect2) {
   ) {
     console.log("COLLISION");
     cancelAnimationFrame(gameInt);
-    alert("Crash and BURN!! Game Over");
+    alert("Game Over");
   }
 }
 
@@ -221,12 +230,11 @@ class Obstacle {
   move = () => {
     this.y += 1;
   };
-
-  //   loadBoat = () => {
-  //     this.boatImg.src = this.src;
-  //     this.boatImg.onload = this.draw;
-  //   };
 }
+//   loadBoat = () => {
+//     this.boatImg.src = this.src;
+//     this.boatImg.onload = this.draw;
+//   };
 
 //OBSTACLE SET INTERVAL FUNCTION:
 setInterval(function () {
@@ -242,18 +250,31 @@ setInterval(function () {
   score += 1;
 }, 6000);
 
-let obstacles = [];
+//Potholes
+setInterval(() => {
+  let potHoles = new Obstacle(
+    Math.random() * canvas.width - 100,
+    -100,
+    100,
+    100,
+    "./assets/potHole1.png"
+  );
+  potHoles.loadObstacle();
+  obstacles.push(potHoles);
+  score += 1;
+}, 3000);
 
-let gameInt = null;
-
-let score = 0;
+// let stopGame = null
 
 //ANIMATE FUNCTION
 
 function animate() {
   gameInt = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height);
+  ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5);
+  ctx.drawImage(roadImg, 0, ++canvasY2, canvas.width, canvas.height + 5);
+  if (canvasY >= canvas.height) canvasY = -canvas.height;
+  if (canvasY2 >= canvas.height) canvasY2 = -canvas.height;
 
   ctx.font = "50px Times Bold";
 
@@ -263,18 +284,18 @@ function animate() {
 
   obstacles.forEach((eachObstacle) => {
     eachObstacle.move();
-    eachObstacle.draw();
+    eachObstacle.drawObstacle();
     detectCollision(carKeys, eachObstacle);
   });
 
   mafia.villanMove();
   mafia.draw();
 
+  mafiaCollision(carKeys, mafia);
+
   //   boat.move();
   //   boat.draw();
   //   myGif.draw();
-
-  mafiaCollision(carKeys, mafia);
 }
 
 animate();
