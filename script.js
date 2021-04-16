@@ -1,4 +1,4 @@
-//Global variables
+//GLOBAL VARIABLES
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
@@ -8,31 +8,161 @@ canvas.height = window.innerHeight
  audio.play();
 
 // ctx.drawImage(roadImg, 1000, 600, 1000, 900);
+const urlParams = new URLSearchParams(window.location.search);
+const carPicked = urlParams.get('car');
+console.log(carPicked)
 
-//ROAD INFOroa
+
+
+
+//ROAD INFO
 
 let roadImg = new Image();
-roadImg.src = './assets/overheadRoad2.png';
+roadImg.src = './assets/overheadBeachBackgroundResize1.jpg';
 
-
-
+const cars = {
+    whiteCar: './assets/whitecar.png',
+    blackCar: './assets/blackcar.jpg',
+    blueCar: './assets/bluecar.png',
+    policeCar: './assets/PoliceTrans.png'
+}
 
 
 //CAR INFO
 
-let carImg = new Image();
-carImg.src = './assets/PoliceTrans.png';
+// let carImg = new Image();
+// carImg.src = cars[carPicked];
 
-let car = {
-    x: 900,
-    y: canvas.height - 100,
-    h: 100,
-    w: 60,
+// let car = {
+//     x: 900,
+//     y: canvas.height - 100,
+//     h: 100,
+//     w: 60,
 
-    draw: function () {
-        ctx.drawImage(carImg, this.x, this.y, this.w, this.h)
+//     draw: function () {
+//         ctx.drawImage(carImg, this.x, this.y, this.w, this.h)
+//     }
+// }
+
+
+
+
+class Car {
+    constructor(x, y, w, h, src) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.src = src;
+        this.carImg = new Image();
+        this.speed = -2;
+
     }
-}
+
+    loadCar = () => {
+
+        this.carImg.src = this.src
+        this.carImg.onload = this.drawCar
+    }
+
+    drawCar = () => {
+
+        ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
+    }
+
+    drawCar = () => {
+
+        ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
+    }
+
+ }
+
+ let ferrari = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FerrariEnzoTrans.png')
+
+    
+    let police = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/PoliceTrans.png')
+    
+    
+    
+    police.loadCar()
+
+  
+  //CAR SELECTOR DROP DOWN MENU
+function myOptions() {
+    document.getElementById('optionDropdown').classList.toggle('show');
+  }
+
+  window.onclick = function(event) {
+      if(!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName('optionContent');
+          var i;
+          for(let i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if(openDropdown.classList.contains('show')) {
+                  openDropdown.classList.remove('show');
+              }
+          }
+      }
+
+      document.querySelector(".startBtn").onclick = function () {
+        if (document.getElementsByClassName('optionDropdown a').innerHTML === 'Option 1') {
+        let ferrari = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FerrariEnzoTrans.png')
+
+        ferrari.loadCar()
+      
+      }
+      window.location.href = "index.html";
+        
+      };
+     
+  }  
+
+// CAR SELECTOR
+//***********may need to change VARIABLE*********
+//   var Car = function () {
+//       this.carKeys = []
+//   };
+
+//   cars.prototype.addCar = function (keys) {
+//       this.carKeys.push(keys);
+//       keys.id = this.carKeys.length;
+//       return this;
+//   };
+
+//   var whichKeys = function(carName) {
+//       this.score = 0;
+//       this.carName = carName;
+//       this.id = null;
+//   };
+
+//   var newGame = new Car();
+
+//   var car1 = new whichKeys(ferrari);
+//   var car2 = new whichKeys(police);
+
+//   newGame.addCar(car2)
+
+  
+    
+// let carImg = new Image();
+// carImg.src = './assets/PoliceTrans.png';
+
+// let car = {
+//     x: 900,
+//     y: canvas.height - 100,
+//     h: 100,
+//     w: 60,
+
+//     draw: function () {
+//         ctx.drawImage(carImg, this.x, this.y, this.w, this.h)
+//     }
+// }
+
+
+//let ferrari = new Car(canvas.width - 50, canvas.height - 100, 50, 100, cars[carPicked])
+//ferrari.loadCar();
+// let police = new Car(canvas.width / 2 + 10, 100, 50, 100, './assets/PoliceTrans.png')
+// police.loadCar();
 
 
 
@@ -46,6 +176,43 @@ let car = {
 
 // }
 
+//////<<<<<<< HEAD
+//VILLAN
+
+// class Villan {
+//     constructor(x, y, w, h, src) {
+
+//         this.health = 200
+//         this.x = x;
+//         this.y = y;
+//         this.w = w;
+//         this.h = h;
+//         this.villanImg = new Image;
+//         this.speed = 3
+//     }
+//     loadVillan = () => {
+//         this.villanImg.src = this.src
+//         this.loadVillan.onload = this.drawVillan
+//     }
+//     drawVillan = () => {
+
+//         ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
+//     }
+//     //move function 
+//     popoMove = () => {
+//         this.y += this.speed
+//     }
+
+
+// }
+
+
+// window.onload = () => {
+//     document.getElementById('startButton').onclick = () => {
+//         startGame();
+//     }
+// };
+//======
 //VILLAN INFO
 // let villanImg = new Image();
 // villanImg.src ='./assets/FerrariEnzoTrans.png'
@@ -54,9 +221,9 @@ class Villan {
     constructor(x, y, w, h, src) {
 
         this.health = this.health;
-        this.x =x;
+        this.x = x;
         this.y = y;
-        this.w =w;
+        this.w = w;
         this.h = h;
         this.src = src;
         this.villanImg = new Image()
@@ -67,9 +234,9 @@ class Villan {
         this.villanImg.src = this.src
         this.villanImg.onload = this.draw
     }
-    draw= () => {
+    draw = () => {
 
-        
+
         ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
     }
     //move function 
@@ -80,11 +247,10 @@ class Villan {
 
 }
 let mafia = new Villan(
-  canvas.width-160, 20, 100, 60,  "./assets/FerrariEnzoTrans.png" 
+    canvas.width - 160, 20, 100, 60, "./assets/FerrariEnzoTrans.png"
 )
 
 mafia.loadVillan();
-
 
 
 
@@ -103,29 +269,56 @@ window.onkeydown = function (e) {
     console.log(e.key)
 
     if (e.key === 'ArrowLeft') {
-        if (car.x > canvas.width - (canvas.width / 3)) {
-            car.x -= 15
+        if (ferrari.x > canvas.width - (canvas.width / 3)) {
+            ferrari.x -= 15
         }
     }
 
     if (e.key === 'ArrowRight') {
-        if (car.x < canvas.width - car.w) {
-            car.x += 15
+        if (ferrari.x < canvas.width - ferrari.w) {
+            ferrari.x += 15
         }
     }
 
     if (e.key === 'ArrowUp') {
-        if (car.y > 0) {
-            car.y -= 15
+        if (ferrari.y > 0) {
+            ferrari.y -= 15
         }
     }
 
     if (e.key === 'ArrowDown') {
-        if (car.y < canvas.height - car.h) {
-            car.y += 15
+        if (ferrari.y < canvas.height - ferrari.h) {
+            ferrari.y += 15
         }
     }
 }
+// window.onkeydown = function (e) {
+//     console.log(e.key)
+
+//     if (e.key === 'ArrowLeft') {
+//         if (car.x > canvas.width - (canvas.width / 3)) {
+//             car.x -= 15
+//         }
+//     }
+
+//     if (e.key === 'ArrowRight') {
+//         if (car.x < canvas.width - car.w) {
+//             car.x += 15
+//         }
+//     }
+
+//     if (e.key === 'ArrowUp') {
+//         if (car.y > 0) {
+//             car.y -= 15
+//         }
+//     }
+
+//     if (e.key === 'ArrowDown') {
+//         if (car.y < canvas.height - car.h) {
+//             car.y += 15
+//         }
+//     }
+// }
 
 //COLLISION DETECTION
 
@@ -140,35 +333,35 @@ function detectCollision(rect1, rect2) {
 
 //OBSTACLE CODE
 
-class Obstacle {
-    constructor(x, y, w, h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
+// class Obstacle {
+//     constructor(x, y, w, h) {
+//         this.x = x;
+//         this.y = y;
+//         this.w = w;
+//         this.h = h;
 
-        this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${Math.random() * 255}`
-    }
+//         this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${Math.random() * 255}`
+//     }
 
-    draw = () => {
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.x, this.y, this.w, this.h)
-    }
+//     draw = () => {
+//         ctx.fillStyle = this.color
+//         ctx.fillRect(this.x, this.y, this.w, this.h)
+//     }
 
-    move = () => {
-        this.y += 1;
-    }
-}
+    // move = () => {
+    //     this.y += 1;
+    // }
+//}
 
-let obstacles = [] //Part of setInterval function below:
+// let obstacles = [] //Part of setInterval function below:
 
-setInterval(function () {
-    obstacles.push(new Obstacle(Math.random() * canvas.width, 0, Math.random() * 200 + 50, 30))
+// setInterval(function () {
+//     obstacles.push(new Obstacle(Math.random() * canvas.width, 0, Math.random() * 200 + 50, 30))
 
-    score += 1
-}, 1000)
+//     score += 1
+// }, 1000)
 
-let gameInt = null;
+// let gameInt = null;
 
 let score = 0;
 
@@ -177,21 +370,40 @@ let score = 0;
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(roadImg, canvas.width - 500, 0, 500, canvas.height)
+    ctx.drawImage(roadImg, canvas.width - 1400, 0, 1400, canvas.height)
+    ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height)
 
     ctx.font = '30px Arial';
 
     ctx.fillText(score, 10, 30, 50, 00)
 
-    car.draw();
-    mafia.draw();
+    // car.draw();
+    if (ferrari.loadCar()) { ferrari.drawCar();
+    }
+
+    
+    // obstacles.forEach(eachObstacle => {
+    //     eachObstacle.move()
+    //     eachObstacle.draw()
+    //     detectCollision(car, eachObstacle)
+    // })
+
+    ferrari.drawCar()
+
 
     obstacles.forEach(eachObstacle => {
         eachObstacle.move()
         eachObstacle.draw()
-        detectCollision(car, eachObstacle)
+        detectCollision(ferrari, eachObstacle)
     })
 }
 
+
+
+
+
 animate();
+
+
+
 
