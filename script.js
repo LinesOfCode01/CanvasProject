@@ -50,14 +50,14 @@ class Car {
 let carKeys = new Car(
   canvas.width - 50,
   canvas.height - 100,
-  50,
-  100,
+  80,
+  120,
   cars[carPicked]
 );
 
 carKeys.loadCar();
 
-//let myGif = gif();
+// let myGif = gif();
 // myGif.load("./assets/fireBall.gif");
 // myGif.load("./assets/Fire.gif");
 
@@ -78,11 +78,11 @@ class Villan {
   draw = () => {
     ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h);
     ctx.fillStyle = "red";
-    ctx.fillRect(this.x, this.y - 50, 200, 25);
+    ctx.fillRect(this.x, this.y + this.h + 10, 200, 25);
     ctx.fillStyle = "green";
     ctx.fillRect(
       this.x,
-      this.y - 50,
+      this.y + this.h + 10,
       Math.max(0, (this.health / 100) * 200),
       25
     );
@@ -97,7 +97,7 @@ class Villan {
   };
 
   dead = () => {
-    this.villanImg.src = "./assets/JgWhiteCar.png";
+    this.villanImg.src = "./assets/PoorSilverCarDamaged.png";
     // ctx.drawImage(myGif.img, 0, 0);
     // myGif.load("./assets/fireBall.gif");
     // myGif.load("./assets/Fire.gif");
@@ -125,12 +125,24 @@ let mafia = new Villan(
   (canvas.height -= 5),
   80,
   120,
-  "./assets/PoorSilverCar.png",
+  "./assets/PoorSilverCarVillan.png",
   100,
   0
 );
 
 mafia.loadVillan();
+
+// let boat = new Obstacle(
+//   Math.floor(startX + (Math.random() * canvas.width) / 3),
+//   (canvas.height -= 5),
+//   180,
+//   250,
+//   "./assets/Boat.png",
+//   100,
+//   0
+// );
+
+// boat.eachObstacle();
 
 //CAR CONTROLS
 window.onkeydown = function (e) {
@@ -209,6 +221,11 @@ class Obstacle {
   move = () => {
     this.y += 1;
   };
+
+  //   loadBoat = () => {
+  //     this.boatImg.src = this.src;
+  //     this.boatImg.onload = this.draw;
+  //   };
 }
 
 //OBSTACLE SET INTERVAL FUNCTION:
@@ -252,6 +269,10 @@ function animate() {
 
   mafia.villanMove();
   mafia.draw();
+
+  //   boat.move();
+  //   boat.draw();
+  //   myGif.draw();
 
   mafiaCollision(carKeys, mafia);
 }
