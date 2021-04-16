@@ -3,18 +3,6 @@ const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
-<<<<<<< HEAD
-
-let canvasY2 = 0;
-let canvasY = -canvas.height;
-
-
-//  let audio = new Audio( "./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
-//  audio.play();
-
-// ctx.drawImage(roadImg, 1000, 600, 1000, 900);
-=======
->>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 const urlParams = new URLSearchParams(window.location.search);
 const carPicked = urlParams.get('car');
 console.log(carPicked)
@@ -24,18 +12,13 @@ let obstacles = []
 let gameInt = null;
 let score = 0;
 
+// let audio = new Audio("./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
+// audio.play();
+
 document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
 }
 
-<<<<<<< HEAD
-//Boat info 
-let boatImg = new Image;
-boatImg.src = './assets/FrdWhiteCar.png'
-
-
-=======
->>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 //ROAD INFO
 let roadImg = new Image();
 roadImg.src = './assets/overheadBeachBackgroundResize.jpg';
@@ -84,7 +67,7 @@ carKeys.loadCar();
 
 //VILLAN INFO
 class Villan {
-    constructor(health, x, y, w, h, src, bh) {
+    constructor(x, y, w, h, src, health, bh) {
 
         this.health = health;
         this.x = x;
@@ -127,10 +110,12 @@ class Villan {
         this.y -= this.speed
         if (this.y <= 0) {
             this.speed = 0
-            if (this.x <= canvas.width - this.w) {
-                this.x++
-            } else if (this.x <= canvas.width / 2) {
-                this.x--
+            this.x++
+            if (this.x >= canvas.width - this.w) {
+                this.x -= 500
+            }
+            else if (this.x <= canvas.width - (canvas.width / 3)) {
+                this.x += 100
             }
         }
 
@@ -138,22 +123,9 @@ class Villan {
 
 }
 
-let startX = canvas.width - (canvas.width / 4)
-<<<<<<< HEAD
-
-
-
-
-
-
-
-document.getElementById('exitButton').onclick = () => {
-    location.href = "start.html"
-}
-=======
-let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 3), canvas.height -= 5, 80, 120, "./assets/PoorSilverCar.png", 100)
+let startX = canvas.width - (canvas.width / 3)
+let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 4), canvas.height -= 5, 80, 120, "./assets/PoorSilverCar.png", 100, 0)
 mafia.loadVillan()
->>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
 
 
@@ -216,11 +188,7 @@ function mafiaCollision(rect1, rect2) {
 //OBSTACLE CODE
 class Obstacle {
 
-<<<<<<< HEAD
     constructor(x, y, w, h, src) {
-=======
-    constructor(x, y, w, h,src) {
->>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
         this.x = x;
         this.y = y;
         this.w = w;
@@ -239,31 +207,6 @@ class Obstacle {
         ctx.drawImage(this.obstacleImg, this.x, this.y, this.w, this.h)
         this.y++
     }
-<<<<<<< HEAD
-
-
-
-    move = () => {
-        this.y += 1;
-    }
-
-
-}
-
-//OBSTACLE SET INTERVAL FUNCTION:
-setInterval(function () {
-    obstacles.push(
-        new Obstacle(
-            Math.floor(startX + (Math.random() * canvas.width) / 3),
-            0,
-            Math.random() * 200 + 50,
-            30
-        )
-    );
-
-    score += 1;
-}, 6000);
-=======
     move = () => {
         this.y += 1;
     }
@@ -282,11 +225,10 @@ setInterval(function () {
 
 //   score += 1;
 // }, 6000);
->>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
 //Potholes
 setInterval(() => {
-    let potHoles = new Obstacle(Math.random() * canvas.width - 100, -100, 100, 100, "./assets/potHole1.png")
+    let potHoles = new Obstacle(Math.random() * canvas.width - 100, -100, 100, 100, "./assets/pothole-png-7.png")
     potHoles.loadObstacle()
     obstacles.push(potHoles)
     score += 1;
@@ -301,19 +243,11 @@ setInterval(() => {
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-<<<<<<< HEAD
     ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5)
     ctx.drawImage(roadImg, 0, ++canvasY2, canvas.width, canvas.height + 5);
     if (canvasY >= canvas.height) canvasY = -canvas.height;
     if (canvasY2 >= canvas.height) canvasY2 = -canvas.height;
 
-=======
-    ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height +5)
-    ctx.drawImage(roadImg,0, ++canvasY2, canvas.width, canvas.height +5);
-    if( canvasY >= canvas.height) canvasY = -canvas.height;
-    if(canvasY2 >= canvas.height) canvasY2 = -canvas.height;
-    
->>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
 
     ctx.font = '50px Times Bold';
@@ -328,16 +262,8 @@ function animate() {
         detectCollision(carKeys, eachObstacle)
     })
 
-<<<<<<< HEAD
-    obstacles.forEach((eachObstacle) => {
-        eachObstacle.move();
-        eachObstacle.drawObstacle();
-        detectCollision(carKeys, eachObstacle);
-    });
-=======
     mafia.villanMove()
     mafia.draw()
->>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
     mafiaCollision(carKeys, mafia)
 
