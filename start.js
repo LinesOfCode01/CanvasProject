@@ -2,27 +2,36 @@ document.querySelector(".startBtn").onclick = function () {
     window.location.href = `index.html?car=${carPicked}`;
 };
 
-// Characters
-
-
+// characters by Joey
 
 let carPicked = ""
-function whiteCar() {
-    carPicked = 'whiteCar'
-    document.getElementById("character-box").style.backgroundImage = "url(./assets/whitecar.png)";
-}
-
-function blueCar() {
-    carPicked = `blueCar`
-    document.getElementById("character-box").style.backgroundImage = "url(./assets/bluecar.png)";
-}
-
-function blackCar() {
-    carPicked = `blackCar`
-    document.getElementById("character-box").style.backgroundImage = "url(./assets/blackcar.jpg)";
-}
 
 function policeCar() {
     carPicked = `policeCar`
-    document.getElementById("character-box").style.backgroundImage = "url(./assets/PoliceTrans.png)";
+    document.getElementById("character-box").style.backgroundImage = "url(./assets/Police.png)";
+}
+
+function furRedCar() {
+    carPicked = `furRedCar`
+    document.getElementById("character-box").style.backgroundImage = "url(./assets/FurRedCar.png)";
+}
+
+function frdWhiteCar() {
+    carPicked = `frdWhiteCar`
+    document.getElementById("character-box").style.backgroundImage = "url(./assets/FrdWhiteCar.png)";
+}
+
+function jgWhiteCar() {
+    carPicked = `jgWhiteCar`
+    document.getElementById("character-box").style.backgroundImage = "url(./assets/JgWhiteCar.png)";
+}
+
+function lamSilverCar() {
+    carPicked = `lamSilverCar`
+    document.getElementById("character-box").style.backgroundImage = "url(/assets/LamSilverCar.png)";
+}
+
+function poorSilverCar() {
+    carPicked = `poorSilverCar`
+    document.getElementById("character-box").style.backgroundImage = "url(./assets/PoorSilverCar.png)";
 }
