@@ -14,7 +14,7 @@ html {
 .bg {
     position: absolute;
     background-image: url(assets/cclkomdccv.jpeg);
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     background-position: center;
     background-repeat: no-repeat;
@@ -32,6 +32,8 @@ html {
     align-items: center;
     z-index: 5;
     margin-bottom: 5vh;
+    justify-items: center;
+    
 
 }
 
@@ -66,13 +68,14 @@ html {
     z-index: 3;
     font-family: "gamefont", Arial, sans-serif;
     color: yellow;
-    margin-left: 10vh 
+    margin-left: 28vh 
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-items: center;
 }
 /* characters by Joey */
 

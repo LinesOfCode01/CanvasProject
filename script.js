@@ -26,25 +26,6 @@ const cars = {
 
 //CAR INFO
 
-<<<<<<< HEAD
-class Car {
-    constructor (x, y, w, h, src) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.src = src;
-        this.carImg = new Image();
-        this.speed = -2
-        this.carKeys = [];
-
-    }
-
-    loadCar = () => {
-
-        this.carImg.src = this.src
-        this.carImg.onload = this.drawCar
-=======
 // let carImg = new Image();
 // carImg.src = cars[carPicked];
 
@@ -83,7 +64,6 @@ class Car {
     drawCar = () => {
 
         ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
->>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
     }
 
     drawCar = () => {
@@ -91,47 +71,47 @@ class Car {
         ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
     }
 
- }
+}
 
- let ferrari = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FerrariEnzoTrans.png')
+let ferrari = new Car(canvas.width / 2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FerrariEnzoTrans.png')
 
-    
-    let police = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/PoliceTrans.png')
-    
-    
-    
-    police.loadCar()
 
-  
-  //CAR SELECTOR DROP DOWN MENU
+let police = new Car(canvas.width / 2 + 10, canvas.height / 2 - 50, 50, 100, './assets/PoliceTrans.png')
+
+
+
+police.loadCar()
+
+
+//CAR SELECTOR DROP DOWN MENU
 function myOptions() {
     document.getElementById('optionDropdown').classList.toggle('show');
-  }
+}
 
-  window.onclick = function(event) {
-      if(!event.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName('optionContent');
-          var i;
-          for(let i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if(openDropdown.classList.contains('show')) {
-                  openDropdown.classList.remove('show');
-              }
-          }
-      }
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName('optionContent');
+        var i;
+        for (let i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
 
-      document.querySelector(".startBtn").onclick = function () {
+    document.querySelector(".startBtn").onclick = function () {
         if (document.getElementsByClassName('optionDropdown a').innerHTML === 'Option 1') {
-        let ferrari = new Car(canvas.width /2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FerrariEnzoTrans.png')
+            let ferrari = new Car(canvas.width / 2 + 10, canvas.height / 2 - 50, 50, 100, './assets/FerrariEnzoTrans.png')
 
-        ferrari.loadCar()
-      
-      }
-      window.location.href = "index.html";
-        
-      };
-     
-  }  
+            ferrari.loadCar()
+
+        }
+        window.location.href = "index.html";
+
+    };
+
+}
 
 // CAR SELECTOR
 //***********may need to change VARIABLE*********
@@ -158,8 +138,8 @@ function myOptions() {
 
 //   newGame.addCar(car2)
 
-  
-    
+
+
 // let carImg = new Image();
 // carImg.src = './assets/PoliceTrans.png';
 
@@ -192,43 +172,6 @@ ferrari.loadCar();
 
 // }
 
-<<<<<<< HEAD
-//VILLAN
-
-// class Villan {
-//     constructor(x, y, w, h, src) {
-
-//         this.health = 200
-//         this.x = x;
-//         this.y = y;
-//         this.w = w;
-//         this.h = h;
-//         this.villanImg = new Image;
-//         this.speed = 3
-//     }
-//     loadVillan = () => {
-//         this.villanImg.src = this.src
-//         this.loadVillan.onload = this.drawVillan
-//     }
-//     drawVillan = () => {
-
-//         ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
-//     }
-//     //move function 
-//     popoMove = () => {
-//         this.y += this.speed
-//     }
-
-
-// }
-
-
-// window.onload = () => {
-//     document.getElementById('startButton').onclick = () => {
-//         startGame();
-//     }
-// };
-=======
 //VILLAN INFO
 // let villanImg = new Image();
 // villanImg.src ='./assets/FerrariEnzoTrans.png'
@@ -274,7 +217,6 @@ mafia.loadVillan();
 
 
 
->>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
 
 document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
@@ -366,9 +308,9 @@ function detectCollision(rect1, rect2) {
 //         ctx.fillRect(this.x, this.y, this.w, this.h)
 //     }
 
-    // move = () => {
-    //     this.y += 1;
-    // }
+// move = () => {
+//     this.y += 1;
+// }
 //}
 
 // let obstacles = [] //Part of setInterval function below:
@@ -388,28 +330,12 @@ let score = 0;
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-<<<<<<< HEAD
-    ctx.drawImage(roadImg, canvas.width - 1400, 0, 1400, canvas.height)
-=======
     ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height)
->>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
 
     ctx.font = '30px Arial';
 
     ctx.fillText(score, 10, 30, 50, 00)
 
-<<<<<<< HEAD
-    // car.draw();
-    if (ferrari.loadCar()) { ferrari.drawCar();
-    }
-
-    
-    // obstacles.forEach(eachObstacle => {
-    //     eachObstacle.move()
-    //     eachObstacle.draw()
-    //     detectCollision(car, eachObstacle)
-    // })
-=======
 
     ferrari.drawCar()
 
@@ -419,7 +345,6 @@ function animate() {
         eachObstacle.draw()
         detectCollision(ferrari, eachObstacle)
     })
->>>>>>> 7e0733cdf65cb949e3e790e731966cb51d97a49e
 }
 
 
