@@ -4,11 +4,11 @@ const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 const urlParams = new URLSearchParams(window.location.search);
-const carPicked = urlParams.get('car');
-console.log(carPicked)
+const carPicked = urlParams.get("car");
+console.log(carPicked);
 let canvasY2 = 0;
 let canvasY = -canvas.height;
-let obstacles = []
+let obstacles = [];
 let gameInt = null;
 let score = 0;
 
@@ -21,21 +21,17 @@ document.getElementById('exitButton').onclick = () => {
 
 //ROAD INFO
 let roadImg = new Image();
-roadImg.src = './assets/overheadBeachBackgroundResize.jpg';
-
+roadImg.src = "./assets/overheadBeachBackgroundResize.jpg";
 
 //CAR SELECTOR OBJECT
 const cars = {
-
-    policeCar: './assets/Police.png',
-    frdWhiteCar: './assets/FrdWhiteCar.png',
-    furRedCar: './assets/FurRedCar.png',
-    jgWhiteCar: './assets/JgWhiteCar.png',
-    lamSilverCar: './assets/LamSilverCar.png',
-    poorSilverCar: './assets/PoorSilverCar.png'
-
-}
-
+    policeCar: "./assets/Police.png",
+    frdWhiteCar: "./assets/FrdWhiteCar.png",
+    furRedCar: "./assets/FurRedCar.png",
+    jgWhiteCar: "./assets/JgWhiteCar.png",
+    lamSilverCar: "./assets/LamSilverCar.png",
+    poorSilverCar: "./assets/PoorSilverCar.png",
+};
 
 //CAR INFO
 class Car {
@@ -50,20 +46,27 @@ class Car {
     }
 
     loadCar = () => {
-
-        this.carImg.src = this.src
-        this.carImg.onload = this.drawCar
-    }
+        this.carImg.src = this.src;
+        this.carImg.onload = this.drawCar;
+    };
 
     drawCar = () => {
-
-        ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h)
-    }
+        ctx.drawImage(this.carImg, this.x, this.y, this.w, this.h);
+    };
 }
 
-let carKeys = new Car(canvas.width - 50, canvas.height - 100, 50, 100, cars[carPicked])
+let carKeys = new Car(
+    canvas.width - 50,
+    canvas.height - 100,
+    50,
+    100,
+    cars[carPicked]
+);
 carKeys.loadCar();
 
+// let myGif = gif();
+// myGif.load("./assets/fireBall.gif");
+// myGif.load("./assets/Fire.gif");
 
 //VILLAN INFO
 class Villan {
@@ -120,8 +123,7 @@ class Villan {
         }
 
     }
-
-}
+};
 
 let startX = canvas.width - (canvas.width / 3)
 let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 4), canvas.height -= 5, 80, 120, "./assets/PoorSilverCar.png", 100, 0)
@@ -131,62 +133,63 @@ mafia.loadVillan()
 
 //CAR CONTROLS
 window.onkeydown = function (e) {
-    console.log(e.key)
+    console.log(e.key);
 
-    if (e.key === 'ArrowLeft') {
-        if (carKeys.x > canvas.width - (canvas.width / 3)) {
-            carKeys.x -= 20
+    if (e.key === "ArrowLeft") {
+        if (carKeys.x > canvas.width - canvas.width / 3) {
+            carKeys.x -= 20;
         }
     }
 
-    if (e.key === 'ArrowRight') {
+    if (e.key === "ArrowRight") {
         if (carKeys.x < canvas.width - carKeys.w) {
-            carKeys.x += 20
+            carKeys.x += 20;
         }
     }
 
-    if (e.key === 'ArrowUp') {
+    if (e.key === "ArrowUp") {
         if (carKeys.y > 0) {
-            carKeys.y -= 10
+            carKeys.y -= 10;
         }
     }
 
-    if (e.key === 'ArrowDown') {
+    if (e.key === "ArrowDown") {
         if (carKeys.y < canvas.height - carKeys.h) {
-            carKeys.y += 10
+            carKeys.y += 10;
         }
     }
-}
-
+};
 
 //COLLISION DETECTION
 function detectCollision(rect1, rect2) {
-    if (rect1.x < rect2.x + rect2.w &&
+    if (
+        rect1.x < rect2.x + rect2.w &&
         rect1.x + rect1.w > rect2.x &&
         rect1.y < rect2.y + rect2.h &&
-        rect1.y + rect1.h > rect2.y) {
-
-        console.log("COLLISION")
-        cancelAnimationFrame(gameInt)
-        alert("Game Over")
+        rect1.y + rect1.h > rect2.y
+    ) {
+        console.log("COLLISION");
+        cancelAnimationFrame(gameInt);
+        alert("Game Over");
     }
 }
 
 function mafiaCollision(rect1, rect2) {
-    if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.y + rect1.h > rect2.y) {
-
-        console.log("COLLISION")
-        score += 100
-        rect2.health--
-        // Villan.bh -= 5
-        //rect2.health = Math.min(100, rect1.health + .5)
-        //rect2.bh -= 5
-
+    if (
+        rect1.x < rect2.x + rect2.w &&
+        rect1.x + rect1.w > rect2.x &&
+        rect1.y < rect2.y + rect2.h &&
+        rect1.y + rect1.h > rect2.y
+    ) {
+        console.log("COLLISION");
+        score += 100;
+        rect2.health--;
     }
 }
 
 //OBSTACLE CODE
 class Obstacle {
+<<<<<<< HEAD
 
     constructor(x, y, w, h, src) {
         this.x = x;
@@ -235,12 +238,67 @@ setInterval(() => {
 }, 3000)
 
 
+=======
+  constructor(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    this.color = `rgb(${Math.random() * 225}, ${Math.random() * 255}, ${
+      Math.random() * 255
+    }`;
+  }
+
+  draw = () => {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.w, this.h);
+  };
+
+  move = () => {
+    this.y += 1;
+  };
+}
+//   loadBoat = () => {
+//     this.boatImg.src = this.src;
+//     this.boatImg.onload = this.draw;
+//   };
+
+//OBSTACLE SET INTERVAL FUNCTION:
+setInterval(function () {
+  obstacles.push(
+    new Obstacle(
+      Math.floor(startX + (Math.random() * canvas.width) / 3),
+      0,
+      Math.random() * 200 + 50,
+      30
+    )
+  );
+
+  score += 1;
+}, 6000);
+
+//Potholes
+setInterval(() => {
+  let potHoles = new Obstacle(
+    Math.random() * canvas.width - 100,
+    -100,
+    100,
+    100,
+    "./assets/potHole1.png"
+  );
+  potHoles.loadObstacle();
+  obstacles.push(potHoles);
+  score += 1;
+}, 3000);
+>>>>>>> 17a375b5c0a50cec1bdb8ebeba1751bba69f8508
 
 // let stopGame = null
 
 //ANIMATE FUNCTION
 
 function animate() {
+<<<<<<< HEAD
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5)
@@ -266,8 +324,35 @@ function animate() {
     mafia.draw()
 
     mafiaCollision(carKeys, mafia)
+=======
+  gameInt = requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5);
+  ctx.drawImage(roadImg, 0, ++canvasY2, canvas.width, canvas.height + 5);
+  if (canvasY >= canvas.height) canvasY = -canvas.height;
+  if (canvasY2 >= canvas.height) canvasY2 = -canvas.height;
+>>>>>>> 17a375b5c0a50cec1bdb8ebeba1751bba69f8508
 
+    ctx.font = "50px Times Bold";
+
+    ctx.fillText(score, 30, 70, 50, 0);
+
+    carKeys.drawCar();
+
+    obstacles.forEach((eachObstacle) => {
+        eachObstacle.move();
+        eachObstacle.drawObstacle();
+        detectCollision(carKeys, eachObstacle);
+    });
+
+    mafia.villanMove();
+    mafia.draw();
+
+    mafiaCollision(carKeys, mafia);
+
+    //   boat.move();
+    //   boat.draw();
+    //   myGif.draw();
 }
-
 
 animate();
