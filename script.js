@@ -3,6 +3,7 @@ const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
+<<<<<<< HEAD
 
 let canvasY2 = 0;
 let canvasY = -canvas.height;
@@ -12,20 +13,29 @@ let canvasY = -canvas.height;
 //  audio.play();
 
 // ctx.drawImage(roadImg, 1000, 600, 1000, 900);
+=======
+>>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 const urlParams = new URLSearchParams(window.location.search);
 const carPicked = urlParams.get('car');
 console.log(carPicked)
-
+let canvasY2 = 0;
+let canvasY = -canvas.height;
+let obstacles = []
+let gameInt = null;
+let score = 0;
 
 document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
 }
 
+<<<<<<< HEAD
 //Boat info 
 let boatImg = new Image;
 boatImg.src = './assets/FrdWhiteCar.png'
 
 
+=======
+>>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 //ROAD INFO
 let roadImg = new Image();
 roadImg.src = './assets/overheadBeachBackgroundResize.jpg';
@@ -69,7 +79,6 @@ class Car {
 }
 
 let carKeys = new Car(canvas.width - 50, canvas.height - 100, 50, 100, cars[carPicked])
-
 carKeys.loadCar();
 
 
@@ -89,7 +98,7 @@ class Villan {
     }
 
     draw = () => {
-        if (this.y < this.bh) this.y += 3;
+        // if (this.y < this.bh) this.y += 3;
         //ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
         ctx.drawImage(this.villanImg, this.x, this.y, this.w, this.h)
         ctx.fillStyle = 'red'
@@ -113,13 +122,6 @@ class Villan {
         restartGame()
     }
 
-
-    // let deadVillan = new Image();
-    // deadVillan.src = './assets/JgWhiteCar.png'
-
-    // 
-    //}
-
     //VILLAN MOVE FUNCTION
     villanMove = () => {
         this.y -= this.speed
@@ -137,6 +139,7 @@ class Villan {
 }
 
 let startX = canvas.width - (canvas.width / 4)
+<<<<<<< HEAD
 
 
 
@@ -147,6 +150,10 @@ let startX = canvas.width - (canvas.width / 4)
 document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
 }
+=======
+let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 3), canvas.height -= 5, 80, 120, "./assets/PoorSilverCar.png", 100)
+mafia.loadVillan()
+>>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
 
 
@@ -209,7 +216,11 @@ function mafiaCollision(rect1, rect2) {
 //OBSTACLE CODE
 class Obstacle {
 
+<<<<<<< HEAD
     constructor(x, y, w, h, src) {
+=======
+    constructor(x, y, w, h,src) {
+>>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
         this.x = x;
         this.y = y;
         this.w = w;
@@ -228,6 +239,7 @@ class Obstacle {
         ctx.drawImage(this.obstacleImg, this.x, this.y, this.w, this.h)
         this.y++
     }
+<<<<<<< HEAD
 
 
 
@@ -251,19 +263,36 @@ setInterval(function () {
 
     score += 1;
 }, 6000);
+=======
+    move = () => {
+        this.y += 1;
+    }
+}
+
+//OBSTACLE SET INTERVAL FUNCTION:
+// setInterval(function () {
+//   obstacles.push(
+//     new Obstacle(
+//       Math.floor(startX + (Math.random() * canvas.width) / 3),
+//       0,
+//       Math.random() * 200 + 50,
+//       30
+//     )
+//   );
+
+//   score += 1;
+// }, 6000);
+>>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
 //Potholes
 setInterval(() => {
     let potHoles = new Obstacle(Math.random() * canvas.width - 100, -100, 100, 100, "./assets/potHole1.png")
     potHoles.loadObstacle()
     obstacles.push(potHoles)
+    score += 1;
 }, 3000)
 
-let obstacles = []
 
-let gameInt = null;
-
-let score = 0;
 
 // let stopGame = null
 
@@ -272,11 +301,19 @@ let score = 0;
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+<<<<<<< HEAD
     ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5)
     ctx.drawImage(roadImg, 0, ++canvasY2, canvas.width, canvas.height + 5);
     if (canvasY >= canvas.height) canvasY = -canvas.height;
     if (canvasY2 >= canvas.height) canvasY2 = -canvas.height;
 
+=======
+    ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height +5)
+    ctx.drawImage(roadImg,0, ++canvasY2, canvas.width, canvas.height +5);
+    if( canvasY >= canvas.height) canvasY = -canvas.height;
+    if(canvasY2 >= canvas.height) canvasY2 = -canvas.height;
+    
+>>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
 
     ctx.font = '50px Times Bold';
@@ -287,15 +324,20 @@ function animate() {
 
     obstacles.forEach(eachObstacle => {
         eachObstacle.move()
-        eachObstacle.draw()
+        eachObstacle.drawObstacle()
         detectCollision(carKeys, eachObstacle)
     })
 
+<<<<<<< HEAD
     obstacles.forEach((eachObstacle) => {
         eachObstacle.move();
         eachObstacle.drawObstacle();
         detectCollision(carKeys, eachObstacle);
     });
+=======
+    mafia.villanMove()
+    mafia.draw()
+>>>>>>> cee21eb863636936dab941e3bb61e842fd48e143
 
     mafiaCollision(carKeys, mafia)
 
