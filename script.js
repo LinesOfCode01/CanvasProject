@@ -3,8 +3,6 @@ const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
-<<<<<<< HEAD
-=======
 
 let canvasY2 = 0;
 let canvasY = -canvas.height;
@@ -14,7 +12,6 @@ let canvasY = -canvas.height;
 //  audio.play();
 
 // ctx.drawImage(roadImg, 1000, 600, 1000, 900);
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
 const urlParams = new URLSearchParams(window.location.search);
 const carPicked = urlParams.get('car');
 console.log(carPicked)
@@ -24,13 +21,10 @@ document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
 }
 
-<<<<<<< HEAD
-=======
 //Boat info 
 let boatImg = new Image;
-boatImg.src= './assets/FrdWhiteCar.png'
+boatImg.src = './assets/FrdWhiteCar.png'
 
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
 
 //ROAD INFO
 let roadImg = new Image();
@@ -145,11 +139,6 @@ class Villan {
 let startX = canvas.width - (canvas.width / 4)
 
 
-<<<<<<< HEAD
-let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 3), canvas.height -= 5, 80, 120, "./assets/PoorSilverCar.png", 100)
-
-=======
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
 
 
 
@@ -158,11 +147,6 @@ let mafia = new Villan(Math.floor(startX + Math.random() * canvas.width / 3), ca
 document.getElementById('exitButton').onclick = () => {
     location.href = "start.html"
 }
-<<<<<<< HEAD
-mafia.loadVillan()
-=======
-
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
 
 
 
@@ -224,12 +208,8 @@ function mafiaCollision(rect1, rect2) {
 
 //OBSTACLE CODE
 class Obstacle {
-<<<<<<< HEAD
-    constructor(x, y, w, h, src) {
-=======
 
-    constructor(x, y, w, h,src) {
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
+    constructor(x, y, w, h, src) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -249,46 +229,32 @@ class Obstacle {
         this.y++
     }
 
-    
+
 
     move = () => {
         this.y += 1;
     }
-<<<<<<< HEAD
-=======
 
-  
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
+
 }
 
 //OBSTACLE SET INTERVAL FUNCTION:
 setInterval(function () {
-<<<<<<< HEAD
-    obstacles.push(new Obstacle(Math.floor(startX + Math.random() * canvas.width / 3), 0, Math.random() * 200 + 50, 30))
+    obstacles.push(
+        new Obstacle(
+            Math.floor(startX + (Math.random() * canvas.width) / 3),
+            0,
+            Math.random() * 200 + 50,
+            30
+        )
+    );
 
-    score += 1
-}, 6000)
-
-//Potholes
-setInterval(() => {
-    let potholes = new Obstacle(Math.random() * canvas.width - 100, -100, 100, 100, "./assets/potHole1")
-=======
-  obstacles.push(
-    new Obstacle(
-      Math.floor(startX + (Math.random() * canvas.width) / 3),
-      0,
-      Math.random() * 200 + 50,
-      30
-    )
-  );
-
-  score += 1;
+    score += 1;
 }, 6000);
 
 //Potholes
 setInterval(() => {
     let potHoles = new Obstacle(Math.random() * canvas.width - 100, -100, 100, 100, "./assets/potHole1.png")
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
     potHoles.loadObstacle()
     obstacles.push(potHoles)
 }, 3000)
@@ -306,16 +272,12 @@ let score = 0;
 function animate() {
     gameInt = requestAnimationFrame(animate)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-<<<<<<< HEAD
-    ctx.drawImage(roadImg, 0, 0, canvas.width, canvas.height)
-=======
-    ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height +5)
-    ctx.drawImage(roadImg,0, ++canvasY2, canvas.width, canvas.height +5);
-    if( canvasY >= canvas.height) canvasY = -canvas.height;
-    if(canvasY2 >= canvas.height) canvasY2 = -canvas.height;
-    
+    ctx.drawImage(roadImg, 0, ++canvasY, canvas.width, canvas.height + 5)
+    ctx.drawImage(roadImg, 0, ++canvasY2, canvas.width, canvas.height + 5);
+    if (canvasY >= canvas.height) canvasY = -canvas.height;
+    if (canvasY2 >= canvas.height) canvasY2 = -canvas.height;
 
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
+
 
     ctx.font = '50px Times Bold';
 
@@ -329,16 +291,11 @@ function animate() {
         detectCollision(carKeys, eachObstacle)
     })
 
-<<<<<<< HEAD
-    mafia.villanMove()
-    mafia.draw()
-=======
-  obstacles.forEach((eachObstacle) => {
-    eachObstacle.move();
-    eachObstacle.drawObstacle();
-    detectCollision(carKeys, eachObstacle);
-  });
->>>>>>> a494e23b9a8056119bd9b691f9b56e0fc39bcc8a
+    obstacles.forEach((eachObstacle) => {
+        eachObstacle.move();
+        eachObstacle.drawObstacle();
+        detectCollision(carKeys, eachObstacle);
+    });
 
     mafiaCollision(carKeys, mafia)
 
