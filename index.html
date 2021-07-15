@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <button id='exitButton'>Exit</button>
-
-    
-    
-
-    <div id = "roadImg">
-        <canvas id= 'canvas' class='hidden'></canvas>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stop the Villian</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- GAME CANVAS (ROAD IMAGE) -->
+    <div id="roadImg">
+      <!-- <canvas id="canvas" class="hidden"></canvas> -->
+      <!-- <canvas id="canvas" width="1018px" height="804px"></canvas> -->
+      <canvas id="canvas" width="1018px" height="600px"></canvas>
     </div>
 
+    <!-- EXIT BUTTON -->
+    <button id="exitButton">Exit</button>
+
+    <!-- RESTART BUTTON -->
+    <!-- <button id="restartButton">Play Again</button> -->
+
+    <!-- RESTART MODAL -->
+    <div class="modal hidden">
+      <!-- <button class="close-modal">&times;</button> -->
+      <h1>GAME OVER</h1>
+      <button id="restartButton" class="close-modal">Play Again</button>
+    </div>
+    <!-- <div class="overlay hidden"></div> -->
+
     <script src="script.js"></script>
-    
-</body>
-</html>                                                       
+  </body>
+</html>
