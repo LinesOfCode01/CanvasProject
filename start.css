@@ -14,11 +14,9 @@ html {
 .bg {
   position: absolute;
   background-image: url(assets/cclkomdccv.jpeg);
-  /* height: 100vh; */
-  height: 1000px;
-  width: 1020px;
-  /* width: 100vw; */
-  background-position: top;
+  height: 135vh;
+  width: 100vw;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
@@ -35,35 +33,19 @@ html {
   margin-bottom: 5vh;
 }
 
-#highscores ul {
-  color: rgb(81, 74, 124);
-  font-size: 1.5vw;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  list-style-type: none;
-  font-weight: bolder;
-}
-
 .startBtn {
   background-color: rgb(34, 175, 185);
   border: 5px solid black;
   padding: 4vh 2.5vw;
   font-size: 3vw;
   font-weight: bolder;
-  box-shadow: -1vh 1vw violet;
+  box-shadow: -1vh 1vw pink;
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   z-index: 3;
   font-family: 'gamefont', Arial, sans-serif;
   color: yellow;
-  margin-left: 28vh;
+  margin-left: 25vw;
+  cursor: pointer;
 }
 
 #character-container .startBtn {
@@ -85,13 +67,13 @@ h2 {
 }
 
 #character-container {
-  padding: 10px;
+  padding: 10px 10px 30px 10px;
   width: 1000px;
-  height: 600px;
+  height: 700px;
   background-color: rgba(95, 82, 26, 0.9);
-  /* background-color: rgba(201, 200, 200, 0.616); */
   box-sizing: border-box;
-  margin: 0 auto;
+  margin-bottom: 120px;
+  border-radius: 5px;
 }
 
 #character-box {
@@ -119,4 +101,5 @@ h2 {
 #character-container img:hover {
   border-color: blue;
   box-shadow: 0 0 5px blue;
+  cursor: pointer;
 }

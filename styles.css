@@ -1,13 +1,9 @@
-html {
-  background: linear-gradient(to top left, #28b487, #7dd56f);
-}
-
 body {
   padding: 0;
   overflow: hidden;
   overflow-x: hidden;
   margin: 0;
-  background: linear-gradient(to top left, #28b487, #7dd56f);
+  background: black;
 }
 
 #exitButton {
@@ -32,43 +28,11 @@ body {
   border: 0;
   box-shadow: 0;
   border-radius: 5px;
-  /* position: absolute; */
-  /* left: 10px; */
   bottom: 20px;
   cursor: pointer;
 }
 
-/* #canvas {
-  border: orangered dashed;
-  background-repeat: no-repeat;
-   background-size: 1018px 804px;
-} */
-
-/* RESTART MODAL */
-/* .show-modal {
-  font-size: 32px;
-  font-weight: 600;
-  padding: 28.8px 56px;
-  margin: 80px 32px;
-  border: none;
-  background-color: #fff;
-  color: #444;
-  border-radius: 160px;
-  cursor: pointer;
-}
-
-.close-modal {
-  position: absolute;
-  top: 20px;
-  right: 32px;
-  font-size: 80px;
-  color: #333;
-  cursor: pointer;
-  border: none;
-  background: none;
-} */
-
-/* CLASSES TO MAKE MODAL WORK */
+/* RESTART MODAL - CSS TO MAKE MODAL WORK */
 .hidden {
   display: none;
 }
@@ -78,34 +42,15 @@ body {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 25%;
-  /* display: flex; */
-  /* align-content: center; */
-  /* justify-content: center; */
+  width: 15%;
   background-color: white;
-  padding: 55px 45px 80px 75px;
+  padding: 45px 60px 65px 65px;
   border-radius: 5px;
   box-shadow: 0 48px 80px rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
 
 .modal h1 {
-  /* border: yellowgreen dashed; */
   padding-left: 10px;
-}
-
-.modal button {
-  /* border: orangered dashed; */
-  padding-left: 100px;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
-  z-index: 5;
+  padding-right: 0px;
 }

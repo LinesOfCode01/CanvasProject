@@ -3,56 +3,35 @@
 //GLOBAL VARIABLES
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
-// canvas.width = '1018px';
-// canvas.height = '804px';
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-const urlParams = new URLSearchParams(window.location.search);
-const carPicked = urlParams.get('car');
-console.log(carPicked);
 let canvasY2 = 0;
 let canvasY = -canvas.height;
-// let canvasY = -canvas.height;
+const urlParams = new URLSearchParams(window.location.search);
+const carPicked = urlParams.get('car');
 let obstacles = [];
 let gameInt = null;
 let score = 0;
-
-//RESTART MODAL
-
 const modal = document.querySelector('.modal');
-//const overlay = document.querySelector('.overlay');
-// const btnCloseModal = document.querySelector('.close-modal');
-// const btnsOpenModal = document.querySelectorAll('.show-modal');
 
 const openModal = function () {
   modal.classList.remove('hidden');
-  overlay.classList.remove('hidden');
 };
 
-const closeModal = function () {
-  modal.classList.add('hidden');
-  overlay.classList.add('hidden');
-};
-
+//AUDIO TRACK
 // let audio = new Audio("./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
 // audio.play();
 
-// function restartGame() {
-//   //   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   //   obstacles = [];
-//   animate();
-// }
-
+//GAME PLAY FUNCTION (LOADS, DRAWS ANIMATIONS, CAR CONTROLS)
 window.onload = () => {
   document.getElementById('restartButton').onclick = () => {
     location.href = '';
   };
 
   document.getElementById('exitButton').onclick = () => {
-    location.href = 'start.html';
+    location.href = 'index.html';
   };
 
-  //   function startGame() {
   //ROAD INFO
   let roadImg = new Image();
   roadImg.src = './assets/overheadBeachBackgroundResize.jpg';
@@ -67,7 +46,7 @@ window.onload = () => {
     poorSilverCar: './assets/PoorSilverCar.png',
   };
 
-  //CAR INFO
+  //CAR CLASS INFO
   class Car {
     constructor(x, y, w, h, src) {
       this.x = x;
@@ -93,13 +72,40 @@ window.onload = () => {
   let carKeys = new Car(
     canvas.width - 50,
     canvas.height - 100,
-    50,
-    100,
+    60,
+    110,
     cars[carPicked]
   );
   carKeys.loadCar();
 
-  //VILLAN INFO
+  //PLAYER CAR CONTROLS
+  window.onkeydown = function (e) {
+    if (e.key === 'ArrowLeft') {
+      if (carKeys.x > canvas.width - canvas.width / 3) {
+        carKeys.x -= 20;
+      }
+    }
+
+    if (e.key === 'ArrowRight') {
+      if (carKeys.x < canvas.width - carKeys.w) {
+        carKeys.x += 20;
+      }
+    }
+
+    if (e.key === 'ArrowUp') {
+      if (carKeys.y > 0) {
+        carKeys.y -= 10;
+      }
+    }
+
+    if (e.key === 'ArrowDown') {
+      if (carKeys.y < canvas.height - carKeys.h) {
+        carKeys.y += 10;
+      }
+    }
+  };
+
+  //VILLAN CLASS INFO
   class Villan {
     constructor(x, y, w, h, src, health, bh) {
       this.health = health;
@@ -162,61 +168,22 @@ window.onload = () => {
     };
   }
 
+  //VILLAN STARTING POSITION
   let startX = canvas.width - canvas.width / 3;
+
+  //DRAWS VILLAN CAR
   let mafia = new Villan(
     Math.floor(startX + (Math.random() * canvas.width) / 4),
     (canvas.height -= 5),
-    55,
-    100,
+    60,
+    110,
     './assets/PoorSilverCar.png',
-    100,
+    120,
     0
   );
   mafia.loadVillan();
 
-  //CAR CONTROLS
-  window.onkeydown = function (e) {
-    console.log(e.key);
-
-    if (e.key === 'ArrowLeft') {
-      if (carKeys.x > canvas.width - canvas.width / 3) {
-        carKeys.x -= 20;
-      }
-    }
-
-    if (e.key === 'ArrowRight') {
-      if (carKeys.x < canvas.width - carKeys.w) {
-        carKeys.x += 20;
-      }
-    }
-
-    if (e.key === 'ArrowUp') {
-      if (carKeys.y > 0) {
-        carKeys.y -= 10;
-      }
-    }
-
-    if (e.key === 'ArrowDown') {
-      if (carKeys.y < canvas.height - carKeys.h) {
-        carKeys.y += 10;
-      }
-    }
-  };
-
-  //COLLISION DETECTION
-  function detectCollision(rect1, rect2) {
-    if (
-      rect1.x < rect2.x + rect2.w &&
-      rect1.x + rect1.w > rect2.x &&
-      rect1.y < rect2.y + rect2.h &&
-      rect1.y + rect1.h > rect2.y
-    ) {
-      console.log('COLLISION');
-      cancelAnimationFrame(gameInt);
-      openModal();
-    }
-  }
-
+  //VILLAN COLLISION DETECTION
   function mafiaCollision(rect1, rect2) {
     if (
       rect1.x < rect2.x + rect2.w &&
@@ -224,13 +191,13 @@ window.onload = () => {
       rect1.y < rect2.y + rect2.h &&
       rect1.y + rect1.h > rect2.y
     ) {
-      console.log('COLLISION');
       score += 100;
       rect2.health--;
     }
   }
 
-  //OBSTACLES (POT HOLES, BOAT)
+  //OBSTACLES CLASS (POT HOLES, BOAT):
+  //POT HOLES
   class Obstacle {
     constructor(x, y, w, h, src) {
       this.x = x;
@@ -257,6 +224,7 @@ window.onload = () => {
     };
   }
 
+  //BOAT
   class Boat {
     constructor(x, y, w, h, src) {
       this.x = x;
@@ -280,46 +248,47 @@ window.onload = () => {
   }
   let boats = [];
 
-  // OBSTACLES - SET INTERVALS FUNCTION:
+  // OBSTACLES (BOAT AND POT HOLES) - MOVEMENT INTERVAL FUNCTION:
   //BOAT
   setInterval(function () {
     let boat = new Boat(
       (Math.random() * canvas.width) / 3,
       canvas.height,
-      100,
-      100,
+      225,
+      225,
       './assets/Boat.png'
     );
     boat.loadboat();
 
     boats.push(boat);
-  }, 7000);
+  }, 6500);
 
   //POT HOLES
-  // setInterval(function () {
-  //   let potHoles = new Obstacle(
-  //     Math.random() * canvas.width + 1000,
-  //     -100,
-  //     80,
-  //     80,
-  //     './assets/pothole-png-7.png'
-  //   );
-  //   potHoles.loadObstacle();
-  //   obstacles.push(potHoles);
-  //   score += 1;
-  // }, 500);
   setInterval(function () {
     let potHoles = new Obstacle(
-      Math.random() * canvas.width + 700,
-      -100,
+      Math.random() * canvas.width + 950,
+      -90,
       80,
       80,
-      './assets/pothole-png-7.png'
+      './assets/pothole.png'
     );
     potHoles.loadObstacle();
     obstacles.push(potHoles);
     score += 5;
-  }, 500);
+  }, 400);
+
+  //POT HOLES COLLISION DETECTION
+  function detectCollision(rect1, rect2) {
+    if (
+      rect1.x < rect2.x + rect2.w &&
+      rect1.x + rect1.w > rect2.x &&
+      rect1.y < rect2.y + rect2.h &&
+      rect1.y + rect1.h > rect2.y
+    ) {
+      cancelAnimationFrame(gameInt);
+      openModal();
+    }
+  }
 
   //ANIMATE FUNCTION
   function animate() {
@@ -330,26 +299,9 @@ window.onload = () => {
     if (canvasY >= canvas.height) canvasY = -canvas.height;
     if (canvasY2 >= canvas.height) canvasY2 = -canvas.height;
 
-    //   ctx.font = '50px Times Bold';
+    ctx.font = '80px gamefont Bolder';
 
-    //   ctx.fillText(score, 30, 70, 50, 0);
-
-    //   carKeys.drawCar();
-
-    //   obstacles.forEach(eachObstacle => {
-    //     eachObstacle.move();
-    //     eachObstacle.drawObstacle();
-    //     detectCollision(carKeys, eachObstacle);
-    //   });
-
-    //   mafia.villanMove();
-    //   mafia.draw();
-
-    //   mafiaCollision(carKeys, mafia);
-
-    ctx.font = '50px gamefont Bold';
-
-    ctx.fillText(`SCORE:${score}`, 30, 70, 50, 0);
+    ctx.fillText(`SCORE ${score}`, 30, 70, 150, 40);
 
     carKeys.drawCar();
 
@@ -370,43 +322,3 @@ window.onload = () => {
 
   animate();
 };
-// };
-
-//btnNew.addEventListener('click', restartGame);
-
-// closeModal();
-
-// btnCloseModal.addEventListener('click', closeModal);
-// overlay.addEventListener('click', closeModal);
-
-//alert('Game Over');
-
-//RESTART MODAL
-
-// const modal = document.querySelector('.modal');
-// const overlay = document.querySelector('.overlay');
-// const btnCloseModal = document.querySelector('.close-modal');
-// const btnsOpenModal = document.querySelectorAll('.show-modal');
-
-// const openModal = function () {
-//   modal.classList.remove('hidden');
-//   overlay.classList.remove('hidden');
-// };
-
-// const closeModal = function () {
-//   modal.classList.add('hidden');
-//   overlay.classList.add('hidden');
-// };
-
-// for (let i = 0; i < btnsOpenModal.length; i++)
-//   btnsOpenModal[i].addEventListener('click', openModal);
-
-// btnCloseModal.addEventListener('click', closeModal);
-// overlay.addEventListener('click', closeModal);
-
-// document.addEventListener('keydown', function (e) {
-//   console.log(e.key);
-//   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-//     closeModal();
-//   }
-// });

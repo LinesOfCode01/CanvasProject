@@ -1,8 +1,6 @@
 document.querySelector('.startBtn').onclick = function () {
-  window.location.href = `index.html?car=${carPicked}`;
+  window.location.href = `gameBoard.html?car=${carPicked}`;
 };
-
-// characters by Joey
 
 let carPicked = '';
 
