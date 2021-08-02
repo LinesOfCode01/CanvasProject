@@ -19,8 +19,8 @@ const openModal = function () {
 };
 
 //AUDIO TRACK
-// let audio = new Audio("./assets/01 Into The dream (ft. Jakub Tirco) (1).mp3");
-// audio.play();
+let audio = new Audio("./assets/DavidBowie_LetsDance_GE.mp3");
+audio.play();
 
 //GAME PLAY FUNCTION (LOADS, DRAWS ANIMATIONS, CAR CONTROLS)
 window.onload = () => {
